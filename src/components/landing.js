@@ -1,5 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Link } from 'react-router';
 
-const Landing = () => (<div>Basic Landing</div>);
+class Landing extends Component {
+  render() {
+    return (
+      <div >
+        <Link to="/blog">Blog</Link>
+        <Link to="/games">Games</Link>
+      </div>
+    );
+  }
+}
+
 
 export default Landing;
