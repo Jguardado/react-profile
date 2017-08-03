@@ -1,5 +1,10 @@
 import React from 'react';
 
-const Home = () => (<div>Basic Home</div>);
+const Home = ({ children }) => (
+  <div>
+    <h2>Juans Page</h2>
+    {children}
+  </div>
+);
 
 export default Home;

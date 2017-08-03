@@ -3,38 +3,18 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
 import Home from './components/home';
 import Landing from './components/landing';
+import Blog from './components/blog';
+import Games from './components/games';
 
-const componentRoutes = {
-  component: Home,
-  path: '/',
-  indexRoute: { component: Landing },
-  childRoutes: [
-    {
-      path: '/blog',
-      getComponent(location, cb) {
-        System.import('./components/blog')
-          .then(module => cb(null, module.default));
-      },
-    },
-    {
-      path: '/landing',
-      getComponent(location, cb) {
-        System.import('./components/landing')
-          .then(module => cb(null, module.default));
-      },
-    },
-    {
-      path: '/games',
-      getComponent(location, cb) {
-        System.import('./components/games')
-          .then(module => cb(null, module.default));
-      },
-    },
-  ],
-};
 
 const Routes = () => (
-  <Router history={hashHistory} routes={componentRoutes} />
+  <Router history={hashHistory}>
+    <Route path="/" component={Home}>
+      <IndexRoute component={Landing} />
+      <Route path="/blog" component={Blog} />
+      <Route path="/games" component={Games} />
+    </Route>
+  </Router>
 );
 
 export default Routes;
