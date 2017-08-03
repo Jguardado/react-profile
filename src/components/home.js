@@ -1,8 +1,9 @@
 import React from 'react';
+import Header from './header';
 
 const Home = ({ children }) => (
-  <div>
-    <h2>Juans Page</h2>
+  <div className="home_container">
+    <Header />
     {children}
   </div>
 );

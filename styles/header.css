@@ -1,0 +1,11 @@
+.header_container {
+  background-color: tan;
+}
+
+.header_title {
+  font-size: 40px;
+}
+
+.header_span {
+  margin-left: 100px;
+}

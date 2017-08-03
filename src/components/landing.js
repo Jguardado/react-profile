@@ -4,9 +4,13 @@ import { Link } from 'react-router';
 class Landing extends Component {
   render() {
     return (
-      <div >
-        <Link to="/blog">Blog</Link>
-        <Link to="/games">Games</Link>
+      <div className="landing_container">
+        <button>
+          <Link to="/blog">Blog</Link>
+        </button>
+        <button>
+          <Link to="/games">Games</Link>
+        </button>
       </div>
     );
   }
