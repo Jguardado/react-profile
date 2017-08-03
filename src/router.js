@@ -4,6 +4,8 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import Home from './components/home';
 import Landing from './components/landing';
 
+// NOTE: this implementation does not bundle the below code until the
+// route outlined is called. And then the code is bundled
 const componentRoutes = {
   component: Home,
   path: '/',
