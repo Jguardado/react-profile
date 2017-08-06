@@ -9,7 +9,7 @@ const VENDOR_LIBS = [
 
 module.exports = {
   entry: {
-    bundle: './src/index.js',
+    bundle: './src/index.jsx',
     vendor: VENDOR_LIBS,
   },
   output: {
@@ -20,7 +20,7 @@ module.exports = {
     rules: [
       {
         use: 'babel-loader',
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
       },
       {
