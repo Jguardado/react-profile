@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import ReduxThunk from 'redux-thunk';
+
 import Routes from './router.jsx';
+import store from './store.jsx';
 
 import '../styles/style.css';
 
@@ -11,14 +11,10 @@ import '../styles/style.css';
 
 const reducers = () => {};
 
-const App = () => {
-  const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
-
-  return (
-    <Provider store={store}>
-      <Routes />
-    </Provider>
-  );
-};
+const App = () => (
+  <Provider store={store}>
+    <Routes />
+  </Provider>
+);
 
 ReactDOM.render(<App />, document.getElementById('root'));
