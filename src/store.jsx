@@ -14,6 +14,14 @@ const initialState = {
       'src/assests/somewhere.jpeg',
     ],
   },
+  infoPanelReducer: {
+    panels: [
+      'This is SF I fucks with it, but not since the hipsters come through',
+      'This is LA, reminds me of the barrio',
+      'This is just a railroad track, dope pic',
+      'I dont knwo where this is, but I like it',
+    ],
+  },
 };
 
 export default createStore(

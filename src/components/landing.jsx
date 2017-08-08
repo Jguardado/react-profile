@@ -2,32 +2,35 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { changeImage } from '../actions/carousel-actions';
+import { changeInfoPanelIndex } from '../actions/info-panel-actions';
 
-const IntroPanel = () => (
-  <div>
-    this is the info Panel
+const InfoPanel = ({ panels, currentInfoPanel }) => (
+  <div className="info_panel_container">
+    {panels[currentInfoPanel]}
   </div>
 );
 
-/*
-NOTE:
-I can disptach an action that sets image as current view. I will
-need to figure out how exactly I plan on having the teh images
-cycle
- */
-
-const ImageCarousel = ({ images, setImage, selectedImage }) => (
+const ImageCarousel = ({ images, setImage, selectedImage, setInfoPanel }) => (
   <div>
-    <h1>Image Carousel</h1>
-    <div>
-      <img src={selectedImage} alt="Image is Coming" />
+    <div
+      className="image_carousel_title"
+    >
+      Image Carousel
+    </div>
+    <div
+      className="image_carousel_selected_container"
+    >
+      <img src={selectedImage} alt="Image is Coming" className="image_carousel_selected" />
     </div>
     <div className="image_carousel_pic_box">
       {
-        images.map(image => (
+        images.map((image, i) => (
           <div
             className="image_carousel_image_button"
-            onClick={() => setImage(image)}
+            onClick={() => {
+              setImage(image);
+              setInfoPanel(i);
+            }}
           >
             {image}
           </div>),
@@ -37,20 +40,28 @@ const ImageCarousel = ({ images, setImage, selectedImage }) => (
   </div>
 );
 
-const Landing = ({ images, setImage, selectedImage }) => (
+const Landing = ({ images, setImage, selectedImage, panels, currentInfoPanel, setInfoPanel }) => (
   <div className="landing_container">
-    <IntroPanel />
-    <ImageCarousel images={images} setImage={setImage} selectedImage={selectedImage} />
+    <InfoPanel panels={panels} currentInfoPanel={currentInfoPanel} />
+    <ImageCarousel
+      images={images}
+      setImage={setImage}
+      selectedImage={selectedImage}
+      setInfoPanel={setInfoPanel}
+    />
   </div>
 );
 
 const mapState = state => ({
   images: state.imagesReducer.images,
   selectedImage: state.imagesReducer.currentImage,
+  panels: state.infoPanelReducer.panels,
+  currentInfoPanel: state.infoPanelReducer.currentInfoPanelIndex,
 });
 
 const mapDispatch = disptach => ({
   setImage: img => disptach(changeImage(img)),
+  setInfoPanel: index => disptach(changeInfoPanelIndex(index)),
 });
 
 export default connect(mapState, mapDispatch)(Landing);
