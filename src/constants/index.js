@@ -1,1 +1,2 @@
 export const ADD_IMAGES = 'ADD_IMAGES';
+export const CHANGE_CAROUSEL_IMAGE = 'CHANGE_CAROUSEL_IMAGE';

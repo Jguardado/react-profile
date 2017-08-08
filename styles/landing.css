@@ -3,6 +3,12 @@
 }
 
 .image_carousel_pic_box {
-  height: 600px;
-  width: 500px;
+  display: flex;
+
+}
+
+.image_carousel_image_button {
+  flex: 1;
+  border: 1px solid black;
+  width: 200px;
 }

@@ -3,5 +3,5 @@ import imagesReducer from './images';
 
 
 export default combineReducers({
-  images: imagesReducer,
+  imagesReducer,
 });

@@ -7,6 +7,11 @@ const imagesReducer = (state = {}, action) => {
         ...state,
         images: action.payload,
       };
+    case types.CHANGE_CAROUSEL_IMAGE:
+      return {
+        ...state,
+        currentImage: action.paylaod,
+      };
     default:
       return state;
   }
