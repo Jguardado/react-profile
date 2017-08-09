@@ -13,6 +13,12 @@ const initialState = {
       'src/assests/railroad.jpeg',
       'src/assests/somewhere.jpeg',
     ],
+    minImages: [
+      'src/assests/san-fran-sm.jpeg',
+      'src/assests/la-street-sm.jpeg',
+      'src/assests/railroad-sm.jpeg',
+      'src/assests/somewhere-sm.jpeg',
+    ],
   },
   infoPanelReducer: {
     panels: [

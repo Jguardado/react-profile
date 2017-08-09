@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import { changeImage } from '../actions/carousel-actions';
@@ -10,7 +10,7 @@ const InfoPanel = ({ panels, currentInfoPanel }) => (
   </div>
 );
 
-const ImageCarousel = ({ images, setImage, selectedImage, setInfoPanel }) => (
+const ImageCarousel = ({ images, setImage, selectedImage, setInfoPanel, minImages }) => (
   <div>
     <div
       className="image_carousel_title"
@@ -20,7 +20,7 @@ const ImageCarousel = ({ images, setImage, selectedImage, setInfoPanel }) => (
     <div
       className="image_carousel_selected_container"
     >
-      <img src={selectedImage} alt="Image is Coming" className="image_carousel_selected" />
+      <img src={selectedImage} alt="Select to one from below" className="image_carousel_selected" />
     </div>
     <div className="image_carousel_pic_box">
       {
@@ -32,7 +32,7 @@ const ImageCarousel = ({ images, setImage, selectedImage, setInfoPanel }) => (
               setInfoPanel(i);
             }}
           >
-            {image}
+            <img src={minImages[i]} alt="Nothing to Select" className="image_carousel_min_pic" />
           </div>),
         )
       }
@@ -40,10 +40,19 @@ const ImageCarousel = ({ images, setImage, selectedImage, setInfoPanel }) => (
   </div>
 );
 
-const Landing = ({ images, setImage, selectedImage, panels, currentInfoPanel, setInfoPanel }) => (
+const Landing = ({
+  images,
+  setImage,
+  selectedImage,
+  panels,
+  currentInfoPanel,
+  setInfoPanel,
+  minImages,
+}) => (
   <div className="landing_container">
     <InfoPanel panels={panels} currentInfoPanel={currentInfoPanel} />
     <ImageCarousel
+      minImages={minImages}
       images={images}
       setImage={setImage}
       selectedImage={selectedImage}
@@ -53,6 +62,7 @@ const Landing = ({ images, setImage, selectedImage, panels, currentInfoPanel, se
 );
 
 const mapState = state => ({
+  minImages: state.imagesReducer.minImages,
   images: state.imagesReducer.images,
   selectedImage: state.imagesReducer.currentImage,
   panels: state.infoPanelReducer.panels,
@@ -63,5 +73,51 @@ const mapDispatch = disptach => ({
   setImage: img => disptach(changeImage(img)),
   setInfoPanel: index => disptach(changeInfoPanelIndex(index)),
 });
+
+Landing.propTypes = {
+  minImages: PropTypes.arr,
+  images: PropTypes.arr,
+  selectedImage: PropTypes.string,
+  panels: PropTypes.arr,
+  currentInfoPanel: PropTypes.string,
+  setImage: PropTypes.func,
+  setInfoPanel: PropTypes.func,
+};
+
+Landing.defaultProps = {
+  minImages: [],
+  images: [],
+  selectedImage: '',
+  panels: [],
+  currentInfoPanel: '',
+  setImage: () => {},
+  setInfoPanel: () => {},
+};
+
+ImageCarousel.propTypes = {
+  minImages: PropTypes.arr,
+  images: PropTypes.arr,
+  selectedImage: PropTypes.string,
+  setImage: PropTypes.func,
+  setInfoPanel: PropTypes.func,
+};
+
+ImageCarousel.defaultProps = {
+  minImages: [],
+  images: [],
+  selectedImage: '',
+  setImage: () => {},
+  setInfoPanel: () => {},
+};
+
+InfoPanel.propTypes = {
+  panels: PropTypes.arr,
+  currentInfoPanel: PropTypes.string,
+};
+
+InfoPanel.defaultProps = {
+  panels: [],
+  currentInfoPanel: '',
+};
 
 export default connect(mapState, mapDispatch)(Landing);

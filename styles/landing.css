@@ -19,8 +19,11 @@
 
 .image_carousel_image_button {
   flex: 1;
-  border: 1px solid black;
   width: 200px;
+  border-radius: 4px;
+  margin-left: 5px;
+  margin-right: 5px;
+  position: relative;
 }
 
 .info_panel_container {
@@ -42,4 +45,10 @@
   margin-bottom: 40px;
   font-size: 40px;
   font-weight: bolder;
+}
+
+.image_carousel_min_pic {
+  position: relative;
+  width: 100%;
+  border-radius: 4px;
 }
