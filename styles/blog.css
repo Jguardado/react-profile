@@ -1,0 +1,9 @@
+.blog_entry {
+  border: 1px solid black
+}
+
+.blog_full-view {
+  z-index: 10000;
+  background-color: white;
+  border: 2px solid black;
+}

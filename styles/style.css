@@ -1,6 +1,9 @@
+@import "./blog.css";
 @import "./header.css";
 @import "./landing.css";
 
+
 .home_container {
   background-color: beige;
+  min-height: 1500px;
 }
