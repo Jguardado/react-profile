@@ -1,17 +1,23 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import { setSelectedBlog, setModalActivation } from '../actions/blog-actions';
 
 const BlogSummary = ({ summaries, summaryIndex }) => (
-  <div className="blog_summary">
+  <div className="blog_entry_summary">
     {
       summaries[summaryIndex]
     }
   </div>
 );
 
-const BlogEntry = ({ image, index, summaries, selectBlog, activateModal, minImage }) => (
+const BlogEntry = ({
+  index,
+  summaries,
+  selectBlog,
+  activateModal,
+  minImage,
+}) => (
   <div
     className="blog_entry"
     onClick={() => {
@@ -19,14 +25,14 @@ const BlogEntry = ({ image, index, summaries, selectBlog, activateModal, minImag
       activateModal(true);
     }}
   >
-    <img src={minImage} alt="thumbnail didnt load" />
+    <img className="blog_entry_image"src={minImage} alt="thumbnail didnt load" />
     <BlogSummary summaryIndex={index} summaries={summaries} />
   </div>
 );
 
-const BlogInfoSection = () => (
-  <div>
-   BlogInfoSection
+const BlogInfoSection = ({ info }) => (
+  <div className="blog_info_section">
+    {info}
   </div>
 );
 
@@ -37,11 +43,18 @@ const BlogFullView = ({
   activateModal,
 }) => (
   <div className="blog_full-view">
-    <img src={image} alt="full view pic didnt load" />
-    {
-      blogEntries[selectedBlogIndex]
-    }
+    <img
+      className="blog_full_view_image"
+      src={image}
+      alt="full view pic didnt load"
+    />
+    <div className="blog_full_view_text_content">
+      {
+        blogEntries[selectedBlogIndex]
+      }
+    </div>
     <div
+      className="blog_full_view_close_btn"
       onClick={() => activateModal(false)}
     >
       CLOSE
@@ -58,10 +71,10 @@ const Blog = ({
   selectBlog,
   activateModal,
   minBlogEntryImages,
+  blogInfoSection,
 }) => (
   <div className="blog_container">
-    Basic Blog
-    <BlogInfoSection />
+    <BlogInfoSection info={blogInfoSection} />
     {
       modalActive ?
         <BlogFullView
@@ -77,7 +90,6 @@ const Blog = ({
           key={entry}
           entryIndex={i}
           summaries={blogSummaries}
-          image={blogEntryImages[i]}
           minImage={minBlogEntryImages[i]}
           index={i}
           selectBlog={selectBlog}
@@ -88,6 +100,78 @@ const Blog = ({
   </div>
 );
 
+Blog.propTypes = {
+  blogEntries: PropTypes.arr,
+  blogEntryImages: PropTypes.arr,
+  selectedBlogIndex: PropTypes.number,
+  modalActive: PropTypes.bool,
+  blogSummaries: PropTypes.arr,
+  selectBlog: PropTypes.func,
+  activateModal: PropTypes.func,
+  minBlogEntryImages: PropTypes.arr,
+  blogInfoSection: PropTypes.string,
+};
+
+BlogFullView.propTypes = {
+  blogEntries: PropTypes.arr,
+  image: PropTypes.string,
+  selectedBlogIndex: PropTypes.number,
+  activateModal: PropTypes.func,
+};
+
+BlogInfoSection.propTypes = {
+  info: PropTypes.string,
+};
+
+BlogEntry.propTypes = {
+  index: PropTypes.number,
+  summaries: PropTypes.arr,
+  selectBlog: PropTypes.func,
+  activateModal: PropTypes.func,
+  minImage: PropTypes.string,
+};
+
+BlogSummary.propTypes = {
+  summaries: PropTypes.arr,
+  summaryIndex: PropTypes.number,
+};
+
+Blog.defaultProps = {
+  blogEntries: [],
+  blogEntryImages: [],
+  selectedBlogIndex: 0,
+  modalActive: false,
+  blogSummaries: [],
+  selectBlog: () => {},
+  activateModal: () => {},
+  minBlogEntryImages: [],
+  blogInfoSection: '',
+};
+
+BlogFullView.defaultProps = {
+  blogEntries: [],
+  image: '',
+  selectedBlogIndex: 0,
+  activateModal: () => {},
+};
+
+BlogInfoSection.defaultProps = {
+  info: '',
+};
+
+BlogEntry.defaultProps = {
+  index: 0,
+  summaries: [],
+  selectBlog: () => {},
+  activateModal: () => {},
+  minImage: '',
+};
+
+BlogSummary.defaultProps = {
+  summaries: [],
+  summaryIndex: 0,
+};
+
 const mapState = state => ({
   blogEntries: state.blogReducer.blogEntries,
   blogEntryImages: state.blogReducer.blogEntryImages,
@@ -95,6 +179,7 @@ const mapState = state => ({
   selectedBlogIndex: state.blogReducer.selectedBlogIndex,
   modalActive: state.blogReducer.modalActive,
   blogSummaries: state.blogReducer.blogSummaries,
+  blogInfoSection: state.blogReducer.blogInfoSection,
 });
 
 const mapDispatch = dispatch => ({

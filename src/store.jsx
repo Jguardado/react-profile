@@ -24,9 +24,9 @@ const initialState = {
       'being brown in the tech industry. Why it feesl weird, when you actually know the truth',
     ],
     blogSummaries: [
-      'my road to a plant based diet',
-      'strength traing and how its changed my life',
-      'latino coder: outsider looking in',
+      'My road to a plant based diet',
+      'Strength traing and how its changed my life',
+      'Latino coder: Outsider looking in',
     ],
     blogInfoSection: 'This is where we write blogs',
   },
