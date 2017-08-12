@@ -7,11 +7,16 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const initialState = {
   blogReducer: {
     modalActive: false,
-    selectedBlogIndex: 0,
+    selectedBlogIndex: null,
     blogEntryImages: [
-      'tempUrl',
-      'tempUrl',
-      'tempUrl',
+      'src/assests/fruit.jpeg',
+      'src/assests/training.jpg',
+      'src/assests/coding_pic.jpeg',
+    ],
+    minBlogEntryImages: [
+      'src/assests/fruit-sm.jpeg',
+      'src/assests/training-sm.jpeg',
+      'src/assests/coding_pic-sm.jpeg',
     ],
     blogEntries: [
       'Plant based diets are the way to go. In the long run it will help everything. this is just a temporary blog',
