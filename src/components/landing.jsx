@@ -75,10 +75,10 @@ const mapDispatch = disptach => ({
 });
 
 Landing.propTypes = {
-  minImages: PropTypes.arr,
-  images: PropTypes.arr,
+  minImages: PropTypes.array,
+  images: PropTypes.array,
   selectedImage: PropTypes.string,
-  panels: PropTypes.arr,
+  panels: PropTypes.array,
   currentInfoPanel: PropTypes.string,
   setImage: PropTypes.func,
   setInfoPanel: PropTypes.func,
@@ -95,8 +95,8 @@ Landing.defaultProps = {
 };
 
 ImageCarousel.propTypes = {
-  minImages: PropTypes.arr,
-  images: PropTypes.arr,
+  minImages: PropTypes.array,
+  images: PropTypes.array,
   selectedImage: PropTypes.string,
   setImage: PropTypes.func,
   setInfoPanel: PropTypes.func,
@@ -111,7 +111,7 @@ ImageCarousel.defaultProps = {
 };
 
 InfoPanel.propTypes = {
-  panels: PropTypes.arr,
+  panels: PropTypes.array,
   currentInfoPanel: PropTypes.string,
 };
 
