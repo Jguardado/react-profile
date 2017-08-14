@@ -1,6 +1,7 @@
 @import "./blog.css";
 @import "./header.css";
 @import "./landing.css";
+@import "../node_modules/codemirror/lib/codemirror.css";
 
 .home_container {
   background-color: beige;
