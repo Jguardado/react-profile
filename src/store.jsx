@@ -52,6 +52,10 @@ const initialState = {
       'I dont know where this is, but I like it',
     ],
   },
+  gamesReducer: {
+    react: 'import React from "react"\n\nconst SampleStateless = () => {\n return (\n <div>\n \tSample Stateless\n </div>\n )\n}\n\nexport default SampleStateless;',
+    redux: 'import { combineReducers } from \"redux\";\n\nconst sampleReducer = (state = {}, action) => {\n switch(action.type)\n \tcase SAMPLE_TYPE:\n\t return {\n \t\t..state,\n \t\tsample: action.payload \n \t}\n \tdefault:\n \t return state;\n}',
+  },
 };
 
 export default createStore(
