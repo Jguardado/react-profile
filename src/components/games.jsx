@@ -3,6 +3,7 @@ import CodeMirror from 'react-codemirror';
 import { connect } from 'react-redux';
 // import Example from './example.jsx';
 import { updateCodemirrorContent, setJSframework } from '../actions/games-actions';
+import { getFramework } from '../selectors/games-selector';
 
 require('codemirror/mode/javascript/javascript');
 require('codemirror/mode/ruby/ruby');
@@ -86,6 +87,23 @@ const DemoRedux = ({ updateCode, reduxCode }) => {
   );
 };
 
+const RenderJSComp = ({ framework, updateCode, reactCode, reduxCode }) => {
+  console.log('framework', framework);
+  const components = {
+    react: <DemoReact updateCode={updateCode} reactCode={reactCode} />,
+    redux: <DemoRedux updateCode={updateCode} reduxCode={reduxCode} />,
+    node: <DemoNode />,
+  };
+
+  return (
+    <div>
+      {
+        components[framework]
+      }
+    </div>
+  );
+};
+
 // NOTE: This may need to be changed to a Class as the components[framework] is
 // not updating, with redux change
 const Games = ({
@@ -96,11 +114,7 @@ const Games = ({
   setCodeMirror,
   framework,
 }) => {
-  const components = {
-    react: <DemoReact updateCode={updateCode} reactCode={reactCode} />,
-    redux: <DemoRedux updateCode={updateCode} reduxCode={reduxCode} />,
-    node: <DemoNode />,
-  };
+  console.log('framework in Games: ', framework);
   const handleFormChange = (evt) => {
     console.log('change the form', evt.target.value);
     setCodeMirror(evt.target.value);
@@ -120,13 +134,14 @@ const Games = ({
               <option value="node">Node</option>
             </select>
           </label>
-          <input type="submit" value="Submit" />
         </form>
-        {
-          components[framework]
-        }
+        <RenderJSComp
+          framework={framework}
+          updateCode={updateCode}
+          reactCode={reactCode}
+          reduxCode={reduxCode}
+        />
       </div>
-
     </div>
   );
 };
@@ -135,7 +150,7 @@ const mapState = state => ({
   reactCode: state.gamesReducer.react,
   reduxCode: state.gamesReducer.redux,
   rubyCode: state.gamesReducer.ruby,
-  framework: state.gamesReducer.framework,
+  framework: getFramework(state),
 });
 
 const mapDispatch = dispatch => ({
