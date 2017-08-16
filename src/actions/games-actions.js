@@ -7,3 +7,8 @@ export const updateCodemirrorContent = (codeType, input) => ({
     text: input,
   },
 });
+
+export const setJSframework = framework => ({
+  type: types.SET_JS_FRAMEWORK,
+  payload: framework,
+});

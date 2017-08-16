@@ -7,6 +7,11 @@ const gamesReducer = (state = {}, action) => {
         ...state,
         [action.payload.type]: action.payload.text,
       };
+    case types.SET_JS_FRAMEWORK:
+      return {
+        ...state,
+        framework: action.payload,
+      };
     default:
       return state;
   }
