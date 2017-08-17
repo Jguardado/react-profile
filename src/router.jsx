@@ -5,7 +5,7 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import Home from './components/home.jsx';
 import Landing from './components/landing.jsx';
 import Blog from './components/blog.jsx';
-import Games from './components/games.jsx';
+import Games from './components/games/games.jsx';
 /*eslint-enable */
 
 
