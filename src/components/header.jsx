@@ -7,15 +7,21 @@ const Header = () => (
     <div>
       <div className="header_span">Just a site to have fun and play with</div>
       <div className="header_button_container">
-        <div className="header_button">
-          <Link className="header_button_link" to="/">Home</Link>
-        </div>
-        <div className="header_button">
-          <Link className="header_button_link" to="/blog">Blog</Link>
-        </div>
-        <div className="header_button">
-          <Link className="header_button_link" to="/games">Games</Link>
-        </div>
+        <Link className="header_button_link" to="/">
+          <div className="header_button">
+            Home
+          </div>
+        </Link>
+        <Link className="header_button_link" to="/blog">
+          <div className="header_button">
+            Blog
+          </div>
+        </Link>
+        <Link className="header_button_link" to="/games">
+          <div className="header_button">
+            Games
+          </div>
+        </Link>
       </div>
     </div>
   </div>
