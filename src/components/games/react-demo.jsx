@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import CodeMirror from 'react-codemirror';
 
 require('codemirror/mode/javascript/javascript');
@@ -23,6 +23,16 @@ const DemoReact = ({ updateCode, reactCode }) => {
       />
     </div>
   );
+};
+
+DemoReact.propTypes = {
+  updateCode: PropTypes.func,
+  reactCode: PropTypes.string,
+};
+
+DemoReact.defaultProps = {
+  updateCode: () => {},
+  reactCode: '',
 };
 
 export default DemoReact;

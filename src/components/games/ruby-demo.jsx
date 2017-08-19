@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import CodeMirror from 'react-codemirror';
 
 require('codemirror/mode/ruby/ruby');
@@ -21,6 +21,17 @@ const DemoRuby = ({ updateCode, rubyCode }) => {
       />
     </div>
   );
+};
+
+DemoRuby.propTypes = {
+  updateCode: PropTypes.func,
+  rubyCode: PropTypes.string,
+};
+
+DemoRuby.defaultProps = {
+  updateCode: () => {},
+  rubyCode: '',
+
 };
 
 export default DemoRuby;

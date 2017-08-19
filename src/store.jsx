@@ -53,10 +53,10 @@ const initialState = {
     ],
   },
   gamesReducer: {
+    node: '',
     react: 'import React from "react"\n\nconst SampleStateless = () => {\n return (\n <div>\n \tSample Stateless\n </div>\n )\n}\n\nexport default SampleStateless;',
     redux: 'import { combineReducers } from \"redux\";\n\nconst sampleReducer = (state = {}, action) => {\n switch(action.type)\n \tcase SAMPLE_TYPE:\n\t return {\n \t\t..state,\n \t\tsample: action.payload \n \t}\n \tdefault:\n \t return state;\n}',
     ruby: "def practice\n\n puts 'Do you like cake? (yes/no)'\n ans = gets.chomp\n \n if \n \tans == 'yes'\n \tputs 'me too!'\n \n elsif\n \tans == 'no'\n \tputs 'diet?!'\n \n else\n \tputs 'really?!'\n end\n \nend",
-    framework: null,
   },
 };
 

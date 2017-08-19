@@ -8,7 +8,18 @@ export const updateCodemirrorContent = (codeType, input) => ({
   },
 });
 
-export const setJSframework = framework => ({
+export const setJSframework = demo => ({
   type: types.SET_JS_FRAMEWORK,
-  payload: framework,
+  payload: {
+    demo: demo.name,
+    active: demo.active,
+  },
+});
+
+export const deactivateDemo = demoName => ({
+  type: types.DEACTIVATE_DEMO,
+  payload: {
+    demo: demoName,
+    active: false,
+  },
 });
