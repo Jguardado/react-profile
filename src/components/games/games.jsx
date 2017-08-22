@@ -15,12 +15,6 @@ import {
   nodeDemo as nodeDemoSelector,
   existingDemos } from '../../selectors/games-selector';
 
-/*
-TODO: Able to alter state once page is loaded. However when routing to a new page
-and then returning, UI is not reflecting what is occuring in redu state. Need to
-look into whether this is a redux-router-issue or stateless component issue.
-*/
-
 const Games = ({
   updateCode,
   reactCode,

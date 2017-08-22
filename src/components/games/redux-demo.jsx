@@ -13,7 +13,6 @@ const DemoRedux = ({ updateCode, reduxCode }) => {
     <div className="demo_redux">
       Lets play with Redux
       <CodeMirror
-        ref="editor"
         options={{
           lineNumbers: true,
           mode: 'javascript',
