@@ -5,6 +5,12 @@
 /* Image Carousel */
 .image_carousel_pic_box {
   display: flex;
+  margin-left: 40%;
+}
+
+.carousel_dots {
+  font-size: 45px;
+  color: grey;
 }
 
 .image_carousel_selected_container {
