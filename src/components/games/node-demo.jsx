@@ -7,7 +7,6 @@ const DemoNode = ({ updateCode, nodeCode }) => (
   <div className="demo_node">
     this would be a demo Node
     <CodeMirror
-      ref="editor"
       options={{
         lineNumbers: true,
         mode: 'javascript',

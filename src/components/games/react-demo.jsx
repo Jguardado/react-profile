@@ -13,7 +13,6 @@ const DemoReact = ({ updateCode, reactCode }) => {
     <div className="demo_react">
       This is React
       <CodeMirror
-        ref="editor"
         options={{
           lineNumbers: true,
           mode: 'javascript',
