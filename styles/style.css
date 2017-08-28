@@ -1,3 +1,4 @@
+@import "./variables.scss";
 @import "./games.css";
 @import "./blog.css";
 @import "./header.css";
@@ -5,6 +6,17 @@
 @import "../node_modules/codemirror/lib/codemirror.css";
 
 .home_container {
-  background-color: beige;
+  background-color: $light-grey;
   min-height: 1500px;
 }
+
+
+/*
+hex numbers:
+
+red: FF3D3D
+light-grey: FFFFFF
+mid-grey: E6E8E6
+cool-grey: CED0CE
+black: 191919
+*/
