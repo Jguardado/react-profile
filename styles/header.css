@@ -1,5 +1,7 @@
+@import "./variables.scss";
+/* for some reason the styles will not load into this file. The variables load into main style file*/
 .header_container {
-  background-color: tan;
+  background-color: $black;
 }
 
 .header_title {
