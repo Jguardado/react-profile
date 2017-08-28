@@ -8,7 +8,8 @@
     "tdd": "npm test -- --watch",
     "clean": "rimraf dist",
     "build": "NODE_ENV=development npm run clean && webpack -p",
-    "serve": "webpack-dev-server"
+    "serve": "webpack-dev-server",
+    "api": "nodemon server/server.js"
   },
   "repository": {
     "type": "git",
