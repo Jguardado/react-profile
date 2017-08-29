@@ -1,12 +1,17 @@
 const express = require('express');
 const path = require('path');
-const handlers = require('./handler');
+const blogHandlers = require('./blog-handler');
 
 const app = express();
 
 // Server routes...
 app.get('/hello', (req, res) => res.send({ hi: 'there' }));
-app.get('/test', handlers.blogResponse);
+app.get('/blogs', blogHandlers.blogEntries);
+app.get('/blogs:id', blogHandlers.blogEntry);
+app.get('/blogImages', blogHandlers.blogImages);
+app.get('/blogImage:id', blogHandlers.blogImage);
+app.get('/blogSummaries', blogHandlers.blogSummaries);
+app.get('/blogsSummary:id', blogHandlers.blogSummary);
 
 if (process.env.NODE_ENV !== 'production') {
   const webpackMiddleware = require('webpack-dev-middleware');
