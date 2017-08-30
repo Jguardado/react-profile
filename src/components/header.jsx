@@ -1,7 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import {
+  fetchBlogEntries,
+  fetchBlogSummaries,
+  fetchBlogImages,
+} from '../actions/blog-actions';
 
-const Header = () => (
+const Header = ({ fetchBlogs, fetchSummaries, blogImages }) => (
   <div className="header_container">
     <div className="header_title">Profile of Juan Guardado</div>
     <div>
@@ -12,7 +18,15 @@ const Header = () => (
             Home
           </div>
         </Link>
-        <Link className="header_button_link" to="/blog">
+        <Link
+          className="header_button_link"
+          to="/blog"
+          onClick={() => {
+            fetchBlogs();
+            fetchSummaries();
+            blogImages();
+          }}
+        >
           <div className="header_button">
             Blog
           </div>
@@ -27,4 +41,10 @@ const Header = () => (
   </div>
 );
 
-export default Header;
+const mapDispatch = dispatch => ({
+  fetchBlogs: () => fetchBlogEntries(dispatch),
+  fetchSummaries: () => fetchBlogSummaries(dispatch),
+  blogImages: () => fetchBlogImages(dispatch),
+});
+
+export default connect(null, mapDispatch)(Header);

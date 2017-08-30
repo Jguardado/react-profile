@@ -18,16 +18,28 @@ const blogEntriesFromDB = [
   },
 ];
 
-const blogEntries = (req, res) => {
-  // make call to DB to retrieve blog entry
-  // return reponse
+const blogSummariesFromDB = [
+  { blogEntry: 0, data: 'My road to a plant based diet' },
+  { blogEntry: 1, data: 'Strength traing and how its changed my life' },
+  { blogEntry: 2, data: 'Latino coder: Outsider looking in' },
+];
 
+const blogEntryImagesFromDB = [
+  'src/assests/fruit.jpeg',
+  'src/assests/training.jpg',
+  'src/assests/coding_pic.jpeg',
+];
+
+
+//* **********************************************************************************
+// Blog Handlers
+//* **********************************************************************************
+
+const blogEntries = (req, res) => {
   res.send({ blogs: blogEntriesFromDB });
 };
 
 const blogEntry = (req, res) => {
-  // make call to DB to retrieve blog entry
-  // return reponse
   const entry = req.params.id.replace(/:/g, '');
   res.send({
     blogEntry: entry,
@@ -38,26 +50,25 @@ const blogEntry = (req, res) => {
 const blogImages = (req, res) =>
   // make call to DB to retrieve blog entry
   // return reponse
-  res.send({ blogImages: [] })
-;
+  res.send({ blogImages: blogEntryImagesFromDB });
 
-const blogImage = (req, res) =>
+const blogImage = (req, res) => {
   // make call to DB to retrieve blog entry
   // return reponse
-  res.send({ images: undefined })
-;
+  const imageIndex = req.params.id.replace(/:/g, '');
+  res.send({ images: blogEntryImagesFromDB[imageIndex] });
+};
 
 const blogSummaries = (req, res) =>
-  // make call to DB to retrieve blog entry
-  // return reponse
-  res.send({ blogSummaries: [] })
-;
+  res.send({ summaries: blogSummariesFromDB });
 
-const blogSummary = (req, res) =>
-  // make call to DB to retrieve blog entry
-  // return reponse
-  res.send({ summaries: '' })
-;
+const blogSummary = (req, res) => {
+  const summaryIndex = req.params.id.replace(/:/g, '');
+  res.send({
+    summaryIndex,
+    summaries: blogSummariesFromDB[summaryIndex],
+  });
+};
 
 module.exports = {
   blogEntries,

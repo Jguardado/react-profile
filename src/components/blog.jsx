@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import uuid from 'uuid';
 
 import { setSelectedBlog, setModalActivation } from '../actions/blog-actions';
 
@@ -87,7 +88,7 @@ const Blog = ({
     {
       blogEntries.map((entry, i) => (
         <BlogEntry
-          key={entry}
+          key={uuid()}
           entryIndex={i}
           summaries={blogSummaries}
           minImage={minBlogEntryImages[i]}
@@ -99,6 +100,7 @@ const Blog = ({
     }
   </div>
 );
+
 
 Blog.propTypes = {
   blogEntries: PropTypes.arr,
