@@ -4,14 +4,17 @@ const blogHandlers = require('./blog-handler');
 
 const app = express();
 
+const testing = path.join(__dirname, 'assets');
+console.log('\n\n\n testing: ', testing);
+app.use(express.static('assets'));
 // Server routes...
 app.get('/hello', (req, res) => res.send({ hi: 'there' }));
 app.get('/blogs', blogHandlers.blogEntries);
 app.get('/blogs:id', blogHandlers.blogEntry);
-app.get('/blogImages', blogHandlers.blogImages);
-app.get('/blogImage:id', blogHandlers.blogImage);
-app.get('/blogSummaries', blogHandlers.blogSummaries);
-app.get('/blogsSummary:id', blogHandlers.blogSummary);
+app.get('/blog-images', blogHandlers.blogImages);
+app.get('/blog-image:id', blogHandlers.blogImage);
+app.get('/blog-summaries', blogHandlers.blogSummaries);
+app.get('/blog-summary:id', blogHandlers.blogSummary);
 
 if (process.env.NODE_ENV !== 'production') {
   const webpackMiddleware = require('webpack-dev-middleware');

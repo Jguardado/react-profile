@@ -14,37 +14,18 @@ const Landing = ({
   currentInfoPanel,
   setInfoPanel,
   minImages,
-}) => {
-  const imageCirculation = () => {
-    const imageIndex = 0;
-    // console.log('images: ', images);
-    setInterval(() => {
-      console.log('imageIndex out side of conditional: ', imageIndex);
-      // if (imageIndex < images.length) {
-      //   imageIndex += 1;
-      //   setImage(images[imageIndex]);
-      // } else {
-      //   console.log('else is passing');
-      //   imageIndex = 0;
-      // }
-      console.log('should be resetting');
-    }, 7000);
-  };
-
-  // imageCirculation();
-  return (
-    <div className="landing_container">
-      <ImageCarousel
-        minImages={minImages}
-        images={images}
-        setImage={setImage}
-        selectedImage={selectedImage}
-        setInfoPanel={setInfoPanel}
-      />
-      <InfoPanel panels={panels} currentInfoPanel={currentInfoPanel} />
-    </div>
-  );
-};
+}) => (
+  <div className="landing_container">
+    <ImageCarousel
+      minImages={minImages}
+      images={images}
+      setImage={setImage}
+      selectedImage={selectedImage}
+      setInfoPanel={setInfoPanel}
+    />
+    <InfoPanel panels={panels} currentInfoPanel={currentInfoPanel} />
+  </div>
+);
 
 const mapState = state => ({
   minImages: state.imagesReducer.minImages,
@@ -62,7 +43,7 @@ const mapDispatch = disptach => ({
 Landing.propTypes = {
   minImages: PropTypes.array,
   images: PropTypes.array,
-  selectedImage: PropTypes.string,
+  selectedImage: PropTypes.array,
   panels: PropTypes.array,
   currentInfoPanel: PropTypes.string,
   setImage: PropTypes.func,
@@ -72,7 +53,7 @@ Landing.propTypes = {
 Landing.defaultProps = {
   minImages: [],
   images: [],
-  selectedImage: '',
+  selectedImage: [],
   panels: [],
   currentInfoPanel: '',
   setImage: () => {},

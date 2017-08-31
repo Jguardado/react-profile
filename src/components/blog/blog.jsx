@@ -1,65 +1,14 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import uuid from 'uuid';
+import BlogEntry from './blog-entry.jsx';
+import BlogFullView from './blog-full-view.jsx';
 
-import { setSelectedBlog, setModalActivation } from '../actions/blog-actions';
-
-const BlogSummary = ({ summaries, summaryIndex }) => (
-  <div className="blog_entry_summary">
-    {
-      summaries[summaryIndex]
-    }
-  </div>
-);
-
-const BlogEntry = ({
-  index,
-  summaries,
-  selectBlog,
-  activateModal,
-  minImage,
-}) => (
-  <div
-    className="blog_entry"
-    onClick={() => {
-      selectBlog(index);
-      activateModal(true);
-    }}
-  >
-    <img className="blog_entry_image"src={minImage} alt="thumbnail didnt load" />
-    <BlogSummary summaryIndex={index} summaries={summaries} />
-  </div>
-);
+import { setSelectedBlog, setModalActivation } from '../../actions/blog-actions';
 
 const BlogInfoSection = ({ info }) => (
   <div className="blog_info_section">
     {info}
-  </div>
-);
-
-const BlogFullView = ({
-  blogEntries,
-  image,
-  selectedBlogIndex,
-  activateModal,
-}) => (
-  <div className="blog_full-view">
-    <img
-      className="blog_full_view_image"
-      src={image}
-      alt="full view pic didnt load"
-    />
-    <div className="blog_full_view_text_content">
-      {
-        blogEntries[selectedBlogIndex]
-      }
-    </div>
-    <div
-      className="blog_full_view_close_btn"
-      onClick={() => activateModal(false)}
-    >
-      CLOSE
-    </div>
   </div>
 );
 
@@ -101,41 +50,16 @@ const Blog = ({
   </div>
 );
 
-
 Blog.propTypes = {
-  blogEntries: PropTypes.arr,
-  blogEntryImages: PropTypes.arr,
+  blogEntries: PropTypes.array,
+  blogEntryImages: PropTypes.array,
   selectedBlogIndex: PropTypes.number,
   modalActive: PropTypes.bool,
-  blogSummaries: PropTypes.arr,
+  blogSummaries: PropTypes.array,
   selectBlog: PropTypes.func,
   activateModal: PropTypes.func,
-  minBlogEntryImages: PropTypes.arr,
+  minBlogEntryImages: PropTypes.array,
   blogInfoSection: PropTypes.string,
-};
-
-BlogFullView.propTypes = {
-  blogEntries: PropTypes.arr,
-  image: PropTypes.string,
-  selectedBlogIndex: PropTypes.number,
-  activateModal: PropTypes.func,
-};
-
-BlogInfoSection.propTypes = {
-  info: PropTypes.string,
-};
-
-BlogEntry.propTypes = {
-  index: PropTypes.number,
-  summaries: PropTypes.arr,
-  selectBlog: PropTypes.func,
-  activateModal: PropTypes.func,
-  minImage: PropTypes.string,
-};
-
-BlogSummary.propTypes = {
-  summaries: PropTypes.arr,
-  summaryIndex: PropTypes.number,
 };
 
 Blog.defaultProps = {
@@ -150,28 +74,12 @@ Blog.defaultProps = {
   blogInfoSection: '',
 };
 
-BlogFullView.defaultProps = {
-  blogEntries: [],
-  image: '',
-  selectedBlogIndex: 0,
-  activateModal: () => {},
+BlogInfoSection.propTypes = {
+  info: PropTypes.string,
 };
 
 BlogInfoSection.defaultProps = {
   info: '',
-};
-
-BlogEntry.defaultProps = {
-  index: 0,
-  summaries: [],
-  selectBlog: () => {},
-  activateModal: () => {},
-  minImage: '',
-};
-
-BlogSummary.defaultProps = {
-  summaries: [],
-  summaryIndex: 0,
 };
 
 const mapState = state => ({

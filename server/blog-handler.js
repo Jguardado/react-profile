@@ -25,9 +25,9 @@ const blogSummariesFromDB = [
 ];
 
 const blogEntryImagesFromDB = [
-  'src/assests/fruit.jpeg',
-  'src/assests/training.jpg',
-  'src/assests/coding_pic.jpeg',
+  '/fruit.jpeg',
+  '/training.jpg',
+  '/coding_pic.jpeg',
 ];
 
 
@@ -35,6 +35,7 @@ const blogEntryImagesFromDB = [
 // Blog Handlers
 //* **********************************************************************************
 
+/* -----------------{ Blog Entries }----------------------- */
 const blogEntries = (req, res) => {
   res.send({ blogs: blogEntriesFromDB });
 };
@@ -47,6 +48,7 @@ const blogEntry = (req, res) => {
   });
 };
 
+/* ----------------{ Blog Images }------------------------ */
 const blogImages = (req, res) =>
   // make call to DB to retrieve blog entry
   // return reponse
@@ -59,6 +61,7 @@ const blogImage = (req, res) => {
   res.send({ images: blogEntryImagesFromDB[imageIndex] });
 };
 
+/* ---------------{ Blog summaries }------------------------*/
 const blogSummaries = (req, res) =>
   res.send({ summaries: blogSummariesFromDB });
 
@@ -69,6 +72,10 @@ const blogSummary = (req, res) => {
     summaries: blogSummariesFromDB[summaryIndex],
   });
 };
+
+
+//* *****************************************************************************
+//* *****************************************************************************
 
 module.exports = {
   blogEntries,

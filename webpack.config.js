@@ -27,6 +27,10 @@ module.exports = {
         use: ['style-loader', 'css-loader', 'sass-loader'],
         test: /\.(css|scss)$/,
       },
+      {
+        use: 'url-loader?limit=25000',
+        test: /\.(png|jpg)$/,
+      },
     ],
   },
   plugins: [

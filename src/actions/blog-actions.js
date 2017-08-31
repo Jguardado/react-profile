@@ -15,14 +15,14 @@ const receivedBlogEntries = blogs => ({
   payload: blogs,
 });
 
-const receivedBlogSummaries = blogs => ({
+const receivedBlogSummaries = summaries => ({
   type: types.RECEIVE_BLOG_SUMMARIES,
-  payload: blogs,
+  payload: summaries,
 });
 
-const receivedBlogImages = blogs => ({
+const receivedBlogImages = images => ({
   type: types.RECEIVE_BLOG_IMAGES,
-  payload: blogs,
+  payload: images,
 });
 
 // TODO: separate this fetch protocal to a helper function.
@@ -31,12 +31,13 @@ export const fetchBlogEntries = dispatch => window.fetch('/blogs')
   .then(res => dispatch(receivedBlogEntries(res.blogs)))
   .catch(err => console.log('there was an error fetching blogs: ', err));
 
-export const fetchBlogSummaries = dispatch => window.fetch('/blogSummaries')
+export const fetchBlogSummaries = dispatch => window.fetch('/blog-summaries')
   .then(res => res.json())
   .then(res => dispatch(receivedBlogSummaries(res.summaries)))
-  .catch(err => console.log('there was an error fetching blogs: ', err));
+  .catch(err => console.log('there was an error fetching summaries: ', err));
 
-export const fetchBlogImages = dispatch => window.fetch('/blogImages')
+export const fetchBlogImages = dispatch => window.fetch('/blog-images')
   .then(res => res.json())
   .then(res => dispatch(receivedBlogImages(res.blogImages)))
-  .catch(err => console.log('there was an error fetching blogs: ', err));
+  .catch(err => console.log('there was an error fetching blog Images: ', err));
+

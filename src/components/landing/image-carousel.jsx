@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-
+import uuid from 'uuid';
 
 class ImageCarousel extends Component {
   componentWillMount() {
@@ -33,6 +33,7 @@ class ImageCarousel extends Component {
           {
             images.map((image, i) => (
               <li
+                key={uuid()}
                 className="carousel_dots"
                 onClick={() => {
                   setImage(image);
@@ -50,7 +51,7 @@ class ImageCarousel extends Component {
 
 ImageCarousel.propTypes = {
   images: PropTypes.array,
-  selectedImage: PropTypes.string,
+  selectedImage: PropTypes.array,
   setImage: PropTypes.func,
   setInfoPanel: PropTypes.func,
 };
