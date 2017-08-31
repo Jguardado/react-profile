@@ -4,13 +4,12 @@ const blogHandlers = require('./blog-handler');
 
 const app = express();
 
-const testing = path.join(__dirname, 'assets');
-console.log('\n\n\n testing: ', testing);
 app.use(express.static('assets'));
 // Server routes...
 app.get('/hello', (req, res) => res.send({ hi: 'there' }));
 app.get('/blogs', blogHandlers.blogEntries);
 app.get('/blogs:id', blogHandlers.blogEntry);
+app.get('/blog-mini-images', blogHandlers.blogMiniImages);
 app.get('/blog-images', blogHandlers.blogImages);
 app.get('/blog-image:id', blogHandlers.blogImage);
 app.get('/blog-summaries', blogHandlers.blogSummaries);

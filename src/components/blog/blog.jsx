@@ -84,7 +84,7 @@ BlogInfoSection.defaultProps = {
 
 const mapState = state => ({
   blogEntries: state.blogReducer.blogEntries,
-  blogEntryImages: state.blogReducer.blogEntryImages,
+  blogEntryImages: state.blogReducer.blogImages,
   minBlogEntryImages: state.blogReducer.minBlogEntryImages,
   selectedBlogIndex: state.blogReducer.selectedBlogIndex,
   modalActive: state.blogReducer.modalActive,

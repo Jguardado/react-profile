@@ -30,6 +30,11 @@ const blogEntryImagesFromDB = [
   '/coding_pic.jpeg',
 ];
 
+const minBlogEntryImagesFromDB = [
+  '/fruit-sm.jpeg',
+  '/training-sm.jpeg',
+  '/coding_pic-sm.jpeg',
+];
 
 //* **********************************************************************************
 // Blog Handlers
@@ -49,6 +54,11 @@ const blogEntry = (req, res) => {
 };
 
 /* ----------------{ Blog Images }------------------------ */
+const blogMiniImages = (req, res) =>
+  // make call to DB to retrieve blog entry
+  // return reponse
+  res.send({ blogMiniImages: minBlogEntryImagesFromDB });
+
 const blogImages = (req, res) =>
   // make call to DB to retrieve blog entry
   // return reponse
@@ -80,6 +90,7 @@ const blogSummary = (req, res) => {
 module.exports = {
   blogEntries,
   blogImages,
+  blogMiniImages,
   blogSummaries,
   blogEntry,
   blogImage,

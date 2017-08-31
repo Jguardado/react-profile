@@ -5,9 +5,15 @@ import {
   fetchBlogEntries,
   fetchBlogSummaries,
   fetchBlogImages,
+  fetchMiniBlogImages,
 } from '../actions/blog-actions';
 
-const Header = ({ fetchBlogs, fetchSummaries, blogImages }) => (
+const Header = ({
+  fetchBlogs,
+  fetchSummaries,
+  blogImages,
+  miniImages,
+}) => (
   <div className="header_container">
     <div className="header_title">Profile of Juan Guardado</div>
     <div>
@@ -25,6 +31,7 @@ const Header = ({ fetchBlogs, fetchSummaries, blogImages }) => (
             fetchBlogs();
             fetchSummaries();
             blogImages();
+            miniImages();
           }}
         >
           <div className="header_button">
@@ -45,6 +52,7 @@ const mapDispatch = dispatch => ({
   fetchBlogs: () => fetchBlogEntries(dispatch),
   fetchSummaries: () => fetchBlogSummaries(dispatch),
   blogImages: () => fetchBlogImages(dispatch),
+  miniImages: () => fetchMiniBlogImages(dispatch),
 });
 
 export default connect(null, mapDispatch)(Header);

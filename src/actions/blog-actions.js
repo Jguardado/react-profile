@@ -25,6 +25,11 @@ const receivedBlogImages = images => ({
   payload: images,
 });
 
+const receivedBlogMiniImages = minImages => ({
+  type: types.RECEIVE_BLOG_MINI_IMAGES,
+  payload: minImages,
+});
+
 // TODO: separate this fetch protocal to a helper function.
 export const fetchBlogEntries = dispatch => window.fetch('/blogs')
   .then(res => res.json())
@@ -41,3 +46,7 @@ export const fetchBlogImages = dispatch => window.fetch('/blog-images')
   .then(res => dispatch(receivedBlogImages(res.blogImages)))
   .catch(err => console.log('there was an error fetching blog Images: ', err));
 
+export const fetchMiniBlogImages = dispatch => window.fetch('/blog-mini-images')
+  .then(res => res.json())
+  .then(res => dispatch(receivedBlogMiniImages(res.blogMiniImages)))
+  .catch(err => console.log('there was an error fetching blog Images: ', err));

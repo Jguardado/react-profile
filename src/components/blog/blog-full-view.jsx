@@ -9,7 +9,7 @@ const BlogFullView = ({
   <div className="blog_full-view">
     <img
       className="blog_full_view_image"
-      src={`localhost:3050${image}`}
+      src={`http://localhost:3050${image}`}
       alt="full view pic didnt load"
     />
     <div className="blog_full_view_text_content">

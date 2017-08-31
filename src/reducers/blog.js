@@ -27,6 +27,11 @@ const blogReducer = (state = {}, action) => {
         ...state,
         blogImages: action.payload,
       };
+    case types.RECEIVE_BLOG_MINI_IMAGES:
+      return {
+        ...state,
+        minBlogEntryImages: action.payload,
+      };
     default:
       return state;
   }
