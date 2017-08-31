@@ -6,6 +6,8 @@ import ImageCarousel from './image-carousel.jsx';
 import { changeImage } from '../../actions/carousel-actions';
 import { changeInfoPanelIndex } from '../../actions/info-panel-actions';
 
+
+// TODO: I need to convert this to stateful comp and prepupulate on componentDidMount
 const Landing = ({
   images,
   setImage,

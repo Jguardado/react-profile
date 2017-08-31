@@ -7,6 +7,11 @@ const infoPanelReducer = (state = {}, action) => {
         ...state,
         currentInfoPanelIndex: action.payload,
       };
+    case types.RECEIVED_PANEL_INFO:
+      return {
+        ...state,
+        panels: action.payload,
+      };
     default:
       return state;
   }

@@ -1,12 +1,15 @@
 const express = require('express');
 const path = require('path');
 const blogHandlers = require('./blog-handler');
+const imageHandlers = require('./image-carousel-handler');
 
 const app = express();
 
 app.use(express.static('assets'));
 // Server routes...
 app.get('/hello', (req, res) => res.send({ hi: 'there' }));
+
+/* ============== BLOG =============================== */
 app.get('/blogs', blogHandlers.blogEntries);
 app.get('/blogs:id', blogHandlers.blogEntry);
 app.get('/blog-mini-images', blogHandlers.blogMiniImages);
@@ -14,6 +17,14 @@ app.get('/blog-images', blogHandlers.blogImages);
 app.get('/blog-image:id', blogHandlers.blogImage);
 app.get('/blog-summaries', blogHandlers.blogSummaries);
 app.get('/blog-summary:id', blogHandlers.blogSummary);
+
+/* =============== Image Carousel ====================== */
+
+app.get('/images', imageHandlers.images);
+app.get('/mini-images', imageHandlers.miniImages);
+app.get('/panels', imageHandlers.panels);
+
+/* ====================================================== */
 
 if (process.env.NODE_ENV !== 'production') {
   const webpackMiddleware = require('webpack-dev-middleware');

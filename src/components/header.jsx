@@ -8,18 +8,35 @@ import {
   fetchMiniBlogImages,
 } from '../actions/blog-actions';
 
+import {
+  fetchCarouselImages,
+} from '../actions/carousel-actions';
+
+import {
+  fetchPanelInfo,
+} from '../actions/info-panel-actions';
+
 const Header = ({
   fetchBlogs,
   fetchSummaries,
   blogImages,
   miniImages,
+  fetchCarousel,
+  fetchPanels,
 }) => (
   <div className="header_container">
     <div className="header_title">Profile of Juan Guardado</div>
     <div>
       <div className="header_span">Just a site to have fun and play with</div>
       <div className="header_button_container">
-        <Link className="header_button_link" to="/">
+        <Link
+          onClick={() => {
+            fetchCarousel();
+            fetchPanels();
+          }}
+          className="header_button_link"
+          to="/"
+        >
           <div className="header_button">
             Home
           </div>
@@ -53,6 +70,8 @@ const mapDispatch = dispatch => ({
   fetchSummaries: () => fetchBlogSummaries(dispatch),
   blogImages: () => fetchBlogImages(dispatch),
   miniImages: () => fetchMiniBlogImages(dispatch),
+  fetchCarousel: () => fetchCarouselImages(dispatch),
+  fetchPanels: () => fetchPanelInfo(dispatch),
 });
 
 export default connect(null, mapDispatch)(Header);

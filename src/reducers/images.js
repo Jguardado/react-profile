@@ -12,6 +12,12 @@ const imagesReducer = (state = {}, action) => {
         ...state,
         currentImage: action.paylaod,
       };
+
+    case types.RECEIVED_CAROUSEL_IMAGES:
+      return {
+        ...state,
+        images: action.payload,
+      };
     default:
       return state;
   }
