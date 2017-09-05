@@ -3,11 +3,10 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
 /*eslint-disable */
 import Home from './components/home.jsx';
-import Landing from './components/landing.jsx';
-import Blog from './components/blog.jsx';
+import Landing from './components/landing/landing.jsx';
+import Blog from './components/blog/blog.jsx';
 import Games from './components/games/games.jsx';
 /*eslint-enable */
-
 
 const Routes = () => (
   <Router history={hashHistory}>

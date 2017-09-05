@@ -12,6 +12,26 @@ const blogReducer = (state = {}, action) => {
         ...state,
         selectedBlogIndex: action.payload,
       };
+    case types.RECEIVE_BLOG_ENTIRES:
+      return {
+        ...state,
+        blogEntries: action.payload,
+      };
+    case types.RECEIVE_BLOG_SUMMARIES:
+      return {
+        ...state,
+        blogSummaries: action.payload,
+      };
+    case types.RECEIVE_BLOG_IMAGES:
+      return {
+        ...state,
+        blogImages: action.payload,
+      };
+    case types.RECEIVE_BLOG_MINI_IMAGES:
+      return {
+        ...state,
+        minBlogEntryImages: action.payload,
+      };
     default:
       return state;
   }

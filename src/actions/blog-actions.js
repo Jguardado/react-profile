@@ -9,3 +9,44 @@ export const setModalActivation = bool => ({
   type: types.SET_MODAL_ACTIVATION,
   payload: bool,
 });
+
+const receivedBlogEntries = blogs => ({
+  type: types.RECEIVE_BLOG_ENTIRES,
+  payload: blogs,
+});
+
+const receivedBlogSummaries = summaries => ({
+  type: types.RECEIVE_BLOG_SUMMARIES,
+  payload: summaries,
+});
+
+const receivedBlogImages = images => ({
+  type: types.RECEIVE_BLOG_IMAGES,
+  payload: images,
+});
+
+const receivedBlogMiniImages = minImages => ({
+  type: types.RECEIVE_BLOG_MINI_IMAGES,
+  payload: minImages,
+});
+
+// TODO: separate this fetch protocal to a helper function.
+export const fetchBlogEntries = dispatch => window.fetch('/blogs')
+  .then(res => res.json())
+  .then(res => dispatch(receivedBlogEntries(res.blogs)))
+  .catch(err => console.log('there was an error fetching blogs: ', err));
+
+export const fetchBlogSummaries = dispatch => window.fetch('/blog-summaries')
+  .then(res => res.json())
+  .then(res => dispatch(receivedBlogSummaries(res.summaries)))
+  .catch(err => console.log('there was an error fetching summaries: ', err));
+
+export const fetchBlogImages = dispatch => window.fetch('/blog-images')
+  .then(res => res.json())
+  .then(res => dispatch(receivedBlogImages(res.blogImages)))
+  .catch(err => console.log('there was an error fetching blog Images: ', err));
+
+export const fetchMiniBlogImages = dispatch => window.fetch('/blog-mini-images')
+  .then(res => res.json())
+  .then(res => dispatch(receivedBlogMiniImages(res.blogMiniImages)))
+  .catch(err => console.log('there was an error fetching blog Images: ', err));
