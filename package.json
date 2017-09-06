@@ -25,6 +25,7 @@
     "express": "^4.14.3",
     "faker": "^3.1.0",
     "lodash": "^4.17.2",
+    "mysql2": "^1.4.2",
     "node-sass": "^4.5.3",
     "react": "15.4.1",
     "react-codemirror": "^1.0.0",
@@ -36,6 +37,7 @@
     "redux-form": "^6.3.2",
     "redux-thunk": "^2.1.0",
     "sass-loader": "^6.0.6",
+    "sequelize": "^4.8.0",
     "uuid": "^3.1.0"
   },
   "devDependencies": {
