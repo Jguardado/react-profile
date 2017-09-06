@@ -2,42 +2,13 @@ const express = require('express');
 const path = require('path');
 const blogHandlers = require('./blog-handler');
 const imageHandlers = require('./image-carousel-handler');
-const Sequelize = require('sequelize');
+const { Blog } = require('./db');
 
 /* **************** DB Connection ************************* */
-const sequelize = new Sequelize('react_profile', 'root', null, {
-  host: 'localhost',
-  dialect: 'mysql',
-
-  pool: {
-    max: 5,
-    min: 0,
-    idle: 10000,
-  },
-});
-
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.');
-  })
-  .catch((err) => {
-    console.error('Unable to connect to the database:', err);
-  });
-
-const Blog = sequelize.define('blog', {
-  entryNum: {
-    type: Sequelize.INTEGER,
-  },
-  blogEntry: {
-    type: Sequelize.STRING,
-  },
-});
-
 Blog.sync({ force: true })
   .then(() => Blog.create({
     entryNum: 1,
-    blogEntry: 'this is a test of my John Hancock',
+    blogEntry: 'this is another test of my John Hancock',
   }));
 
 
@@ -77,7 +48,3 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 app.listen(process.env.PORT || 3050, () => console.log('Listening'));
-
-module.exports = {
-  sequelize,
-};
