@@ -1,22 +1,8 @@
+const { Blog } = require('./db');
 /*
 TODO: Build out initial state that is cuurently in src folder.
 shape the node response to reflect that same patterns
 */
-
-const blogEntriesFromDB = [
-  {
-    blogEntry: 0, // eventually this will be assigned a unique ID (uuid)
-    data: 'Plant based diets are the way to go. In the long run it will help everything. this is just a temporary blog',
-  },
-  {
-    blogEntry: 1,
-    data: 'My true workout plans are so legit. I can get you set up with all the correct powerlifting techniques',
-  },
-  {
-    blogEntry: 2,
-    data: 'being brown in the tech industry. Why it feesl weird, when you actually know the truth',
-  },
-];
 
 const blogSummariesFromDB = [
   { blogEntry: 0, data: 'My road to a plant based diet' },
@@ -41,8 +27,23 @@ const minBlogEntryImagesFromDB = [
 //* **********************************************************************************
 
 /* -----------------{ Blog Entries }----------------------- */
+const createBlogEntry = (req, res) => {
+  console.log('checking out blog request: ', req.body);
+  // Blog.sync({ force: true })
+  //   .then(() => Blog.create({
+  //     entryNum: 1,
+  //     blogEntry: req.body,
+  //   }));
+};
+
+// TODO: must build out crud functiosn for DB. Blog entries are now stored. Must
+// retrieve entries and populated front with correct content
+
 const blogEntries = (req, res) => {
-  res.send({ blogs: blogEntriesFromDB });
+  const testing = Blog.findAll();
+  console.log('what does find all give me: ', testing);
+  res.send('working on it');
+  // res.send({ blogs: blogEntriesFromDB });
 };
 
 const blogEntry = (req, res) => {
@@ -95,4 +96,5 @@ module.exports = {
   blogEntry,
   blogImage,
   blogSummary,
+  createBlogEntry,
 };

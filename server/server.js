@@ -2,15 +2,8 @@ const express = require('express');
 const path = require('path');
 const blogHandlers = require('./blog-handler');
 const imageHandlers = require('./image-carousel-handler');
-const { Blog } = require('./db');
-
+require('./db');
 /* **************** DB Connection ************************* */
-Blog.sync({ force: true })
-  .then(() => Blog.create({
-    entryNum: 1,
-    blogEntry: 'this is another test of my John Hancock',
-  }));
-
 
 const app = express();
 
@@ -26,6 +19,7 @@ app.get('/blog-images', blogHandlers.blogImages);
 app.get('/blog-image:id', blogHandlers.blogImage);
 app.get('/blog-summaries', blogHandlers.blogSummaries);
 app.get('/blog-summary:id', blogHandlers.blogSummary);
+app.get('/submit-blog', blogHandlers.createBlogEntry);
 
 /* =============== Image Carousel ====================== */
 

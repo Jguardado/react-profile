@@ -29,6 +29,9 @@ const Blog = sequelize.define('blog', {
   },
 });
 
+
 module.exports = {
   Blog,
 };
+
+require('./init-blogs');
