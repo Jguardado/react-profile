@@ -14,11 +14,11 @@ app.get('/hello', (req, res) => res.send({ hi: 'there' }));
 /* ============== BLOG =============================== */
 app.get('/blogs', blogHandlers.blogEntries);
 app.get('/blogs:id', blogHandlers.blogEntry);
-app.get('/blog-mini-images', blogHandlers.blogMiniImages);
-app.get('/blog-images', blogHandlers.blogImages);
-app.get('/blog-image:id', blogHandlers.blogImage);
-app.get('/blog-summaries', blogHandlers.blogSummaries);
-app.get('/blog-summary:id', blogHandlers.blogSummary);
+// app.get('/blog-mini-images', blogHandlers.blogMiniImages);
+// app.get('/blog-images', blogHandlers.blogImages);
+// app.get('/blog-image:id', blogHandlers.blogImage);
+// app.get('/blog-summaries', blogHandlers.blogSummaries);
+// app.get('/blog-summary:id', blogHandlers.blogSummary);
 app.get('/submit-blog', blogHandlers.createBlogEntry);
 
 /* =============== Image Carousel ====================== */

@@ -14,7 +14,7 @@ const BlogFullView = ({
     />
     <div className="blog_full_view_text_content">
       {
-        blogEntries[selectedBlogIndex].data // TODO: This is trhowing an error
+        blogEntries[selectedBlogIndex].blogEntry // TODO: This is trhowing an error
       }
     </div>
     <div

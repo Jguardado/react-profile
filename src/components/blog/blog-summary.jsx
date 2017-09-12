@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 const BlogSummary = ({ summaries, summaryIndex }) => (
   <div className="blog_entry_summary">
     {
-      summaries[summaryIndex].data // TODO: This is throwing an error of being undefined
+      summaries ? summaries[summaryIndex] : null// TODO: This is throwing an error of being undefined
     }
   </div>
 );

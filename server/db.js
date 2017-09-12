@@ -21,10 +21,22 @@ sequelize
   });
 
 const Blog = sequelize.define('blog', {
+  context: {
+    type: Sequelize.STRING,
+  },
   entryNum: {
     type: Sequelize.INTEGER,
   },
   blogEntry: {
+    type: Sequelize.STRING,
+  },
+  blogSummary: {
+    type: Sequelize.STRING,
+  },
+  image: {
+    type: Sequelize.STRING,
+  },
+  miniImage: {
     type: Sequelize.STRING,
   },
 });

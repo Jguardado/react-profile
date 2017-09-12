@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import {
   fetchBlogEntries,
-  fetchBlogSummaries,
-  fetchBlogImages,
-  fetchMiniBlogImages,
+  // fetchBlogSummaries,
+  // fetchBlogImages,
+  // fetchMiniBlogImages,
 } from '../actions/blog-actions';
 
 import {
@@ -46,9 +46,9 @@ const Header = ({
           to="/blog"
           onClick={() => {
             fetchBlogs();
-            fetchSummaries();
-            blogImages();
-            miniImages();
+            // fetchSummaries();
+            // blogImages();
+            // miniImages();
           }}
         >
           <div className="header_button">
@@ -65,11 +65,14 @@ const Header = ({
   </div>
 );
 
+// const mapState = state => ({
+//   fetchSummaries: () => fetchBlogSummaries(state),
+//   blogImages: () => fetchBlogImages(state),
+//   miniImages: () => fetchMiniBlogImages(state),
+// });
+
 const mapDispatch = dispatch => ({
   fetchBlogs: () => fetchBlogEntries(dispatch),
-  fetchSummaries: () => fetchBlogSummaries(dispatch),
-  blogImages: () => fetchBlogImages(dispatch),
-  miniImages: () => fetchMiniBlogImages(dispatch),
   fetchCarousel: () => fetchCarouselImages(dispatch),
   fetchPanels: () => fetchPanelInfo(dispatch),
 });

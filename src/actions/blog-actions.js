@@ -1,5 +1,10 @@
 import * as types from '../constants';
-import { handlefetch } from '../helpers/fetch-helpers';
+// import { handlefetch } from '../helpers/fetch-helpers';
+import {
+  getBlogSummaries,
+  getBlogImages,
+  getMiniBlogImages,
+} from '../selectors/blog-selector';
 
 export const setSelectedBlog = blogIndex => ({
   type: types.SET_SELECTED_BLOG_INDEX,
@@ -31,19 +36,24 @@ const receivedBlogMiniImages = minImages => ({
   payload: minImages,
 });
 
-// TODO: separate this fetch protocal to a helper function.
+
 export const fetchBlogEntries = (dispatch) => {
-  handlefetch(dispatch, '/blogs', receivedBlogEntries, 'blogs');
-};
-
-export const fetchBlogSummaries = (dispatch) => {
-  handlefetch(dispatch, '/blog-summaries', receivedBlogSummaries, 'summaries');
-};
-
-export const fetchBlogImages = (dispatch) => {
-  handlefetch(dispatch, '/blog-images', receivedBlogImages, 'blogImages');
-};
-
-export const fetchMiniBlogImages = (dispatch) => {
-  handlefetch(dispatch, '/blog-mini-images', receivedBlogMiniImages, 'blogMiniImages');
+  window.fetch('/blogs')
+    .then(res => res.json())
+    .then((res) => {
+      dispatch(receivedBlogEntries(res.blogs));
+      return res;
+    })
+    .then((res) => {
+      dispatch(receivedBlogSummaries(getBlogSummaries(res.blogs)));
+      return res;
+    })
+    .then((res) => {
+      dispatch(receivedBlogImages(getBlogImages(res.blogs)));
+      return res;
+    })
+    .then((res) => {
+      dispatch(receivedBlogMiniImages(getMiniBlogImages(res.blogs)));
+    })
+    .catch(err => console.log('there was an error fetching blogs: ', err));
 };
