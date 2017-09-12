@@ -41,9 +41,29 @@ const Blog = sequelize.define('blog', {
   },
 });
 
+const Image = sequelize.define('image', {
+  context: {
+    type: Sequelize.STRING,
+  },
+  entryNum: {
+    type: Sequelize.INTEGER,
+  },
+  infoPanel: {
+    type: Sequelize.STRING,
+  },
+  image: {
+    type: Sequelize.STRING,
+  },
+  miniImage: {
+    type: Sequelize.STRING,
+  },
+});
+
 
 module.exports = {
   Blog,
+  Image,
 };
 
 require('./init-blogs');
+require('./init-carousel');
