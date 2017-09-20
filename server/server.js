@@ -24,8 +24,8 @@ app.get('/submit-blog', blogHandlers.createBlogEntry);
 /* =============== Image Carousel ====================== */
 
 app.get('/images', imageHandlers.images);
-app.get('/mini-images', imageHandlers.miniImages);
-app.get('/panels', imageHandlers.panels);
+// app.get('/mini-images', imageHandlers.miniImages);
+// app.get('/panels', imageHandlers.panels);
 
 /* ====================================================== */
 

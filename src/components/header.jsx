@@ -3,9 +3,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import {
   fetchBlogEntries,
-  // fetchBlogSummaries,
-  // fetchBlogImages,
-  // fetchMiniBlogImages,
 } from '../actions/blog-actions';
 
 import {
@@ -46,9 +43,6 @@ const Header = ({
           to="/blog"
           onClick={() => {
             fetchBlogs();
-            // fetchSummaries();
-            // blogImages();
-            // miniImages();
           }}
         >
           <div className="header_button">

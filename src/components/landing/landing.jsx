@@ -1,33 +1,47 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import InfoPanel from './info-panel.jsx';
 import ImageCarousel from './image-carousel.jsx';
 
-import { changeImage } from '../../actions/carousel-actions';
-import { changeInfoPanelIndex } from '../../actions/info-panel-actions';
+import { changeImage, fetchCarouselImages } from '../../actions/carousel-actions';
+import { changeInfoPanelIndex, fetchPanelInfo } from '../../actions/info-panel-actions';
 
 
 // TODO: I need to convert this to stateful comp and prepupulate on componentDidMount
-const Landing = ({
-  images,
-  setImage,
-  selectedImage,
-  panels,
-  currentInfoPanel,
-  setInfoPanel,
-  minImages,
-}) => (
-  <div className="landing_container">
-    <ImageCarousel
-      minImages={minImages}
-      images={images}
-      setImage={setImage}
-      selectedImage={selectedImage}
-      setInfoPanel={setInfoPanel}
-    />
-    <InfoPanel panels={panels} currentInfoPanel={currentInfoPanel} />
-  </div>
-);
+class Landing extends Component {
+  componentWillMount() {
+    const { fetchCarousel, fetchPanels, setImage } = this.props;
+    fetchCarousel();
+    fetchPanels();
+    setImage('/san-fran.jpeg'); // BAD!!! just tryint to get around async call
+  }
+
+  render() {
+    const {
+      images,
+      setImage,
+      selectedImage,
+      panels,
+      currentInfoPanel,
+      setInfoPanel,
+      minImages,
+    } = this.props;
+    // console.log('what is images: ', images);
+    // console.log('what is selectedImage: ', selectedImage);
+    return (
+      <div className="landing_container">
+        <ImageCarousel
+          minImages={minImages}
+          images={images}
+          setImage={setImage}
+          selectedImage={selectedImage}
+          setInfoPanel={setInfoPanel}
+        />
+        <InfoPanel panels={panels} currentInfoPanel={currentInfoPanel} />
+      </div>
+    );
+  }
+}
 
 const mapState = state => ({
   minImages: state.imagesReducer.minImages,
@@ -37,9 +51,11 @@ const mapState = state => ({
   currentInfoPanel: state.infoPanelReducer.currentInfoPanelIndex,
 });
 
-const mapDispatch = disptach => ({
-  setImage: img => disptach(changeImage(img)),
-  setInfoPanel: index => disptach(changeInfoPanelIndex(index)),
+const mapDispatch = dispatch => ({
+  setImage: img => dispatch(changeImage(img)),
+  setInfoPanel: index => dispatch(changeInfoPanelIndex(index)),
+  fetchCarousel: () => fetchCarouselImages(dispatch),
+  fetchPanels: () => fetchPanelInfo(dispatch),
 });
 
 Landing.propTypes = {
