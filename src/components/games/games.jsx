@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Button } from 'antd';
 import DemoRedux from './redux-demo.jsx';
 import DemoReact from './react-demo.jsx';
 import DemoNode from './node-demo.jsx';
@@ -42,27 +43,33 @@ const Games = ({
         Basic Games
         <DemoRuby updateCode={updateCode} rubyCode={rubyCode} />
         <div className="framework_options">
-          <div
+          <Button
+            ghost
+            type="primary"
             className="framework_option"
             onClick={() => {
               handleFrameworkChange({ name: 'reactDemo', active: true });
               deactivateAllOtherDemos('reactDemo');
             }}
-          >REACT</div>
-          <div
+          >REACT</Button>
+          <Button
+            ghost
+            type="primary"
             className="framework_option"
             onClick={() => {
               handleFrameworkChange({ name: 'reduxDemo', active: true });
               deactivateAllOtherDemos('reduxDemo');
             }}
-          >REDUX</div>
-          <div
+          >REDUX</Button>
+          <Button
+            ghost
+            type="primary"
             className="framework_option"
             onClick={() => {
               handleFrameworkChange({ name: 'nodeDemo', active: true });
               deactivateAllOtherDemos('nodeDemo');
             }}
-          >NODE</div>
+          >NODE</Button>
         </div>
         {reduxDemo ? <DemoRedux updateCode={updateCode} reduxCode={reduxCode} /> : null}
         {reactDemo ? <DemoReact updateCode={updateCode} reactCode={reactCode} /> : null}

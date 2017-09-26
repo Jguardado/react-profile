@@ -1,19 +1,19 @@
 import React, { PropTypes } from 'react';
 
 
-const InfoPanel = ({ panels, currentInfoPanel }) => (
+const InfoPanel = ({ images, currentInfoPanel }) => (
   <div className="info_panel_container">
-    {panels[currentInfoPanel]}
+    {images.length > 1 ? images[currentInfoPanel].infoPanel : null}
   </div>
 );
 
 InfoPanel.propTypes = {
-  panels: PropTypes.array,
+  images: PropTypes.array,
   currentInfoPanel: PropTypes.string,
 };
 
 InfoPanel.defaultProps = {
-  panels: [],
+  images: [],
   currentInfoPanel: '',
 };
 

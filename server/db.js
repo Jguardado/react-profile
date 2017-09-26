@@ -65,5 +65,5 @@ module.exports = {
   Image,
 };
 
-require('./init-blogs');
-require('./init-carousel');
+// require('./init-blogs');
+// require('./init-carousel');

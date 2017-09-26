@@ -1,33 +1,17 @@
 import React, { PropTypes, Component } from 'react';
-import { Pagination } from 'antd';
+import { Icon } from 'antd';
 import uuid from 'uuid';
 
 class ImageCarousel extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      current: 3,
-    };
-
-    this.onChange = this.onChange.bind(this);
-  }
-
-  onChange(page) {
-    console.log(page);
-    this.setState({
-      current: page,
-    });
-  }
-
   render() {
     const { images, setImage, selectedImage, setInfoPanel } = this.props;
-    console.log('props in Carousel: ', images.length);
     return (
       <div>
         <div className="image_carousel_pic_box">
           {
             images.map((image, i) => (
-              <li
+              <Icon
+                type="picture"
                 key={uuid()}
                 className="carousel_dots"
                 onClick={() => {
@@ -38,7 +22,6 @@ class ImageCarousel extends Component {
             ))
           }
         </div>
-        <Pagination current={this.state.current} onChange={this.onChange} total={50} />
         <div
           className="image_carousel_selected_container"
         >

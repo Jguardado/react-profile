@@ -10,9 +10,9 @@ import { changeInfoPanelIndex, fetchPanelInfo } from '../../actions/info-panel-a
 // TODO: I need to convert this to stateful comp and prepupulate on componentDidMount
 class Landing extends Component {
   componentWillMount() {
-    const { fetchCarousel, fetchPanels, setImage } = this.props;
+    const { fetchCarousel, setImage } = this.props;
     fetchCarousel();
-    fetchPanels();
+    // fetchPanels();s
     setImage('/san-fran.jpeg'); // BAD!!! just tryint to get around async call
   }
 
@@ -21,7 +21,6 @@ class Landing extends Component {
       images,
       setImage,
       selectedImage,
-      panels,
       currentInfoPanel,
       setInfoPanel,
       minImages,
@@ -37,7 +36,7 @@ class Landing extends Component {
           selectedImage={selectedImage}
           setInfoPanel={setInfoPanel}
         />
-        <InfoPanel panels={panels} currentInfoPanel={currentInfoPanel} />
+        <InfoPanel images={images} currentInfoPanel={currentInfoPanel} />
       </div>
     );
   }
