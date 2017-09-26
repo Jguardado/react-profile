@@ -21,6 +21,7 @@
     "url": "https://github.com/Jguardado/react-profile/issues"
   },
   "dependencies": {
+    "antd": "^2.13.3",
     "codemirror": "^5.28.0",
     "express": "^4.14.3",
     "faker": "^3.1.0",
