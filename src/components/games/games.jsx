@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Button } from 'antd';
+import { Button, Menu } from 'antd';
 import DemoRedux from './redux-demo.jsx';
 import DemoReact from './react-demo.jsx';
 import DemoNode from './node-demo.jsx';
@@ -40,36 +40,48 @@ const Games = ({
   return (
     <div>
       <div>
-        Basic Games
         <DemoRuby updateCode={updateCode} rubyCode={rubyCode} />
         <div className="framework_options">
-          <Button
-            ghost
-            type="primary"
-            className="framework_option"
-            onClick={() => {
-              handleFrameworkChange({ name: 'reactDemo', active: true });
-              deactivateAllOtherDemos('reactDemo');
-            }}
-          >REACT</Button>
-          <Button
-            ghost
-            type="primary"
-            className="framework_option"
-            onClick={() => {
-              handleFrameworkChange({ name: 'reduxDemo', active: true });
-              deactivateAllOtherDemos('reduxDemo');
-            }}
-          >REDUX</Button>
-          <Button
-            ghost
-            type="primary"
-            className="framework_option"
-            onClick={() => {
-              handleFrameworkChange({ name: 'nodeDemo', active: true });
-              deactivateAllOtherDemos('nodeDemo');
-            }}
-          >NODE</Button>
+          <Menu
+            theme="dark"
+            mode="horizontal"
+          >
+            <Menu.Item key="react">
+              <Button
+                ghost
+                type="default"
+                className="framework_option"
+                onClick={() => {
+                  handleFrameworkChange({ name: 'reactDemo', active: true });
+                  deactivateAllOtherDemos('reactDemo');
+                }}
+              >REACT</Button>
+            </Menu.Item>
+            <Menu.Item key="redux">
+              <Button
+                ghost
+                type="default"
+                className="framework_option"
+                onClick={() => {
+                  handleFrameworkChange({ name: 'reduxDemo', active: true });
+                  deactivateAllOtherDemos('reduxDemo');
+                }}
+              >REDUX</Button>
+            </Menu.Item>
+            <Menu.Item key="node">
+              <Button
+                ghost
+                type="default"
+                className="framework_option"
+                onClick={() => {
+                  handleFrameworkChange({ name: 'nodeDemo', active: true });
+                  deactivateAllOtherDemos('nodeDemo');
+                }}
+              >NODE</Button>
+            </Menu.Item>
+          </Menu>
+
+
         </div>
         {reduxDemo ? <DemoRedux updateCode={updateCode} reduxCode={reduxCode} /> : null}
         {reactDemo ? <DemoReact updateCode={updateCode} reactCode={reactCode} /> : null}
