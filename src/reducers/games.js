@@ -23,6 +23,11 @@ const gamesReducer = (state = {}, action) => {
           active: action.payload.active,
         },
       };
+    case types.RECEIVE_SAMPLE_CODE_INFO:
+      return {
+        ...state,
+        code: action.payload,
+      };
     default:
       return state;
   }

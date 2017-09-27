@@ -3,6 +3,7 @@ import CodeMirror from 'react-codemirror';
 
 require('codemirror/mode/ruby/ruby');
 
+// NOTE: Ruby code is not rendering with initail state
 const DemoRuby = ({ updateCode, rubyCode }) => {
   const handleChange = (input) => {
     // I can stringify input and store in state as initialState

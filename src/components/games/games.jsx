@@ -43,12 +43,10 @@ const Games = ({
         <DemoRuby updateCode={updateCode} rubyCode={rubyCode} />
         <div className="framework_options">
           <Menu
-            theme="dark"
             mode="horizontal"
           >
             <Menu.Item key="react">
               <Button
-                ghost
                 type="default"
                 className="framework_option"
                 onClick={() => {
@@ -59,7 +57,6 @@ const Games = ({
             </Menu.Item>
             <Menu.Item key="redux">
               <Button
-                ghost
                 type="default"
                 className="framework_option"
                 onClick={() => {
@@ -70,7 +67,6 @@ const Games = ({
             </Menu.Item>
             <Menu.Item key="node">
               <Button
-                ghost
                 type="default"
                 className="framework_option"
                 onClick={() => {

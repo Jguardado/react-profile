@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const blogHandlers = require('./blog-handler');
 const imageHandlers = require('./image-carousel-handler');
+const sampleCodeHandlers = require('./games-handler');
 require('./db');
 /* **************** DB Connection ************************* */
 
@@ -14,16 +15,12 @@ app.get('/hello', (req, res) => res.send({ hi: 'there' }));
 /* ============== BLOG =============================== */
 app.get('/blogs', blogHandlers.blogEntries);
 app.get('/blogs:id', blogHandlers.blogEntry);
-// app.get('/blog-mini-images', blogHandlers.blogMiniImages);
-// app.get('/blog-images', blogHandlers.blogImages);
-// app.get('/blog-image:id', blogHandlers.blogImage);
-// app.get('/blog-summaries', blogHandlers.blogSummaries);
-// app.get('/blog-summary:id', blogHandlers.blogSummary);
 app.get('/submit-blog', blogHandlers.createBlogEntry);
 
 /* =============== Image Carousel ====================== */
 
 app.get('/images', imageHandlers.images);
+app.get('/sampleCode', sampleCodeHandlers.sampleCode);
 // app.get('/mini-images', imageHandlers.miniImages);
 // app.get('/panels', imageHandlers.panels);
 

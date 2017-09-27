@@ -15,13 +15,9 @@ import {
   fetchPanelInfo,
 } from '../actions/info-panel-actions';
 
-//
-// const SubMenu = Menu.SubMenu;
-// const MenuItemGroup = Menu.ItemGroup;
-
-// <Menu.Item key="mail">
-//        <Icon type="mail" />Navigation One
-//      </Menu.Item>
+import {
+  fetchDemoInfo,
+} from '../actions/games-actions';
 
 class NavigationComp extends Component {
   constructor(props) {
@@ -33,8 +29,14 @@ class NavigationComp extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  componentDidMount() {
+    const { fetchBlogs, fetchCarousel, fetchDemoCode } = this.props;
+    fetchCarousel();
+    fetchBlogs();
+    fetchDemoCode();
+  }
+
   handleClick(e) {
-    console.log('click ', e);
     this.setState({
       current: e.key,
     });
@@ -47,7 +49,7 @@ class NavigationComp extends Component {
       blogImages,
       miniImages,
       fetchCarousel,
-      fetchPanels,
+      fetchDemoCode,
     } = this.props;
 
     return (
@@ -62,7 +64,6 @@ class NavigationComp extends Component {
             <Link
               onClick={() => {
                 fetchCarousel();
-                fetchPanels();
               }}
               to="/"
             >
@@ -86,8 +87,11 @@ class NavigationComp extends Component {
         <Menu.Item key="games">
           <div>
             <Icon type="fork" />
-            <Link to="/games">
-                Games
+            <Link
+              onClick={() => fetchDemoCode()}
+              to="/games"
+            >
+              Games
             </Link>
           </div>
         </Menu.Item>
@@ -96,25 +100,11 @@ class NavigationComp extends Component {
   }
 }
 
-// NOTE: Wrapping info
-// <div className="header_container">
-//   <div className="header_title">Profile of Juan Guardado</div>
-//   <div>
-//     <div className="header_span">Just a site to have fun and play with</div>
-//
-//   </div>
-// </div>
-
-// const mapState = state => ({
-//   fetchSummaries: () => fetchBlogSummaries(state),
-//   blogImages: () => fetchBlogImages(state),
-//   miniImages: () => fetchMiniBlogImages(state),
-// });
-
 const mapDispatch = dispatch => ({
   fetchBlogs: () => fetchBlogEntries(dispatch),
   fetchCarousel: () => fetchCarouselImages(dispatch),
   fetchPanels: () => fetchPanelInfo(dispatch),
+  fetchDemoCode: () => fetchDemoInfo(dispatch),
 });
 
 export default connect(null, mapDispatch)(NavigationComp);

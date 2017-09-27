@@ -59,11 +59,28 @@ const Image = sequelize.define('image', {
   },
 });
 
+const SampleCode = sequelize.define('sampleCode', {
+  context: {
+    type: Sequelize.STRING,
+  },
+  entryNum: {
+    type: Sequelize.INTEGER,
+  },
+  code: {
+    type: Sequelize.STRING,
+  },
+  lang: {
+    type: Sequelize.STRING,
+  },
+});
+
 
 module.exports = {
   Blog,
   Image,
+  SampleCode,
 };
 
 // require('./init-blogs');
 // require('./init-carousel');
+// require('./init-games');
