@@ -7,6 +7,15 @@ class ImageCarousel extends Component {
     const { images, setImage, selectedImage, setInfoPanel } = this.props;
     return (
       <div>
+        <div
+          className="image_carousel_selected_container"
+        >
+          <img
+            src={selectedImage.image}
+            alt="Select to one from below"
+            className="image_carousel_selected"
+          />
+        </div>
         <div className="image_carousel_pic_box">
           {
             images.map((image, i) => (
@@ -21,15 +30,6 @@ class ImageCarousel extends Component {
               />
             ))
           }
-        </div>
-        <div
-          className="image_carousel_selected_container"
-        >
-          <img
-            src={selectedImage.image}
-            alt="Select to one from below"
-            className="image_carousel_selected"
-          />
         </div>
       </div>
     );

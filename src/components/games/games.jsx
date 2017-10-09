@@ -11,10 +11,17 @@ import {
   deactivateDemo as deactivateDemoAction,
 } from '../../actions/games-actions';
 import {
+  setEdit,
+} from '../../actions/ui-actions';
+import {
   reactDemo as reactDemoSelector,
   reduxDemo as reduxDemoSelector,
   nodeDemo as nodeDemoSelector,
-  existingDemos } from '../../selectors/games-selector';
+  existingDemos,
+} from '../../selectors/games-selector';
+import {
+  editPageStatus,
+} from '../../selectors/ui-selector';
 
 const Games = ({
   updateCode,
@@ -27,6 +34,8 @@ const Games = ({
   reduxDemo,
   nodeDemo,
   deactivateDemo,
+  editPage,
+  editable,
 }) => {
   const handleFrameworkChange = (input) => {
     setCodeMirror(input);
@@ -40,7 +49,12 @@ const Games = ({
   return (
     <div>
       <div>
-        <DemoRuby updateCode={updateCode} rubyCode={rubyCode} />
+        <DemoRuby
+          editable={editable}
+          updateCode={updateCode}
+          rubyCode={rubyCode}
+          editPage={editPage}
+        />
         <div className="framework_options">
           <Menu
             mode="horizontal"
@@ -76,8 +90,6 @@ const Games = ({
               >NODE</Button>
             </Menu.Item>
           </Menu>
-
-
         </div>
         {reduxDemo ? <DemoRedux updateCode={updateCode} reduxCode={reduxCode} /> : null}
         {reactDemo ? <DemoReact updateCode={updateCode} reactCode={reactCode} /> : null}
@@ -95,12 +107,14 @@ const mapState = state => ({
   reactDemo: reactDemoSelector(state),
   reduxDemo: reduxDemoSelector(state),
   nodeDemo: nodeDemoSelector(state),
+  editable: editPageStatus(state),
 });
 
 const mapDispatch = dispatch => ({
   updateCode: (type, text) => dispatch(updateCodemirrorContent(type, text)),
   setCodeMirror: framework => dispatch(setJSframework(framework)),
   deactivateDemo: demoName => dispatch(deactivateDemoAction(demoName)),
+  editPage: bool => dispatch(setEdit(bool)),
 });
 
 Games.propTypes = {
