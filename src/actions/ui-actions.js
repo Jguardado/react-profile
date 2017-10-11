@@ -6,7 +6,7 @@ export const setEdit = bool => ({
 });
 
 
-export const setEditedContent = (text, context) => ({
+const setEditedContent = (text, context) => ({
   type: types.SET_EDITED_CONTENT,
   payload: {
     context,
@@ -14,15 +14,37 @@ export const setEditedContent = (text, context) => ({
   },
 });
 
+// NOTE: POST request is not going through
+const postInputToServer = (dispatch, input, context) => {
+  window.fetch(`/${context.path}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      input,
+      context,
+    }),
+  })
+    .then((res) => {
+      console.log('inside of res.json() step: ', res.json());
+      if (res) { return res.json(); }
+    })
+    .then((res) => {
+      console.log('inside of action dispatch step');
+      return dispatch(setEditedContent(input, context));
+    })
+    .catch(err => console.error('something went wrong with saving to db: ', err));
+};
 /*
-  This will most like be converted into reducer. I can buidl sinlge reducer and pass in
-  via context teh appropriate reducer that the change should apply to. However, I also want to
+  This will most like be converted into reducer. I can build a sinlge reducer and pass in
+  via context the appropriate reducer that the change should apply to. However, I also want to
   disptach an aysnc changeto db. So  may just keep this as an action. Updating state only
-  for teh interim between saved change and latest api call to DB
+  for the interim between saved change and latest api call to DB
 
 */
-export const receiveInputTextValue = (input, context) => {
-  switch (context) {
+export const contentDistributionModule = (dispatch, input, context) => {
+  switch (context.type) {
     case 'blog_entry':
       console.log('dispatching change to entry: ', context.entryNum);
       break;
@@ -30,7 +52,7 @@ export const receiveInputTextValue = (input, context) => {
       console.log('dispatching change to blog entry summary: ', context.entryNum);
       break;
     case 'demo_text':
-      console.log('dispatching change to demo text: ', context.entryNum);
+      postInputToServer(dispatch, input, context);
       break;
     case 'image_info_panel':
       console.log('dispatching change to info panel text: ', context.entryNum);

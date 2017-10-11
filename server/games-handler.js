@@ -5,6 +5,7 @@ const { SampleCode } = require('./db');
 //* **********************************************************************************
 
 const sampleCode = (req, res) => {
+  console.log('in sample code, what does res look like: ', Object.keys(res));
   SampleCode.findAll({
     where: {
       context: 'code',

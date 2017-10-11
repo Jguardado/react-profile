@@ -2,12 +2,15 @@ import React, { PropTypes } from 'react';
 import CodeMirror from 'react-codemirror';
 import EditModal from '../editModal.jsx';
 
-// console.log('are we importing EditContent: ', EditContent);
-
 require('codemirror/mode/ruby/ruby');
 
 // NOTE: Ruby code is not rendering with initail state
-const DemoRuby = ({ updateCode, rubyCode, editPage, editable }) => {
+const DemoRuby = ({
+  updateCode,
+  rubyCode,
+  editPage,
+  editable,
+}) => {
   const handleChange = (input) => {
     // I can stringify input and store in state as initialState
     updateCode('ruby', JSON.stringify(input));

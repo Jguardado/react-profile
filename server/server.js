@@ -1,14 +1,18 @@
 const express = require('express');
 const path = require('path');
+const bodyParser = require('body-parser');
 const blogHandlers = require('./blog-handler');
 const imageHandlers = require('./image-carousel-handler');
 const sampleCodeHandlers = require('./games-handler');
+
 require('./db');
 /* **************** DB Connection ************************* */
 
 const app = express();
 
 app.use(express.static('assets'));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 // Server routes...
 app.get('/hello', (req, res) => res.send({ hi: 'there' }));
 
@@ -21,8 +25,16 @@ app.get('/submit-blog', blogHandlers.createBlogEntry);
 
 app.get('/images', imageHandlers.images);
 app.get('/sampleCode', sampleCodeHandlers.sampleCode);
-// app.get('/mini-images', imageHandlers.miniImages);
-// app.get('/panels', imageHandlers.panels);
+
+/* ================ Demo Stuff ========================== */
+
+app.post('/rubyDemo', (req, res) => {
+  console.log('\n\n\n what is req payload: ', Object.keys(req));
+  if (res) {
+    console.log('\n\n there is a res: ', Object.keys(res));
+    res.send('good to go');
+  }
+});
 
 /* ====================================================== */
 

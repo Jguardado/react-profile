@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import { Modal, Button, Input } from 'antd';
+import { connect } from 'react-redux';
+
+import {
+  contentDistributionModule,
+} from '../actions/ui-actions';
 
 const { TextArea } = Input;
 
@@ -26,13 +31,15 @@ class EditModal extends Component {
   }
 
   handleOk() {
+    const { distributionModule } = this.props;
     this.setState({
       ModalText: 'The modal will be closed after two seconds',
       confirmLoading: true,
     });
 
-    console.log('this is inputValue: ', this.state.textInput);
-    console.log('ill need to handle the submission ');
+    console.log('Ill need to handle the submission ');
+    distributionModule(this.state.textInput, { type: 'demo_text', entryNum: 0, path: 'rubyDemo' });
+
     setTimeout(() => {
       this.setState({
         visible: false,
@@ -80,6 +87,14 @@ class EditModal extends Component {
   }
 }
 
+const mapState = () => ({
+
+});
+
+const mapDispatch = dispatch => ({
+  distributionModule: (content, context) =>
+    contentDistributionModule(dispatch, content, context),
+});
 // onChange={evt => console.log('the entr is ctaching', evt.target.value)}
 
-export default EditModal;
+export default connect(mapState, mapDispatch)(EditModal);
