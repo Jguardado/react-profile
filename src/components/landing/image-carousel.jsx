@@ -1,30 +1,17 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
+import { Icon } from 'antd';
 import uuid from 'uuid';
 
 class ImageCarousel extends Component {
-  componentWillMount() {
-    const { selectedImage, setImage, images, setInfoPanel } = this.props;
-
-    if (!selectedImage) {
-      setImage([images[0]]);
-      setInfoPanel(0);
-    }
-  }
-
   render() {
     const { images, setImage, selectedImage, setInfoPanel } = this.props;
     return (
       <div>
         <div
-          className="image_carousel_title"
-        >
-          Image Carousel
-        </div>
-        <div
           className="image_carousel_selected_container"
         >
           <img
-            src={selectedImage}
+            src={selectedImage.image}
             alt="Select to one from below"
             className="image_carousel_selected"
           />
@@ -32,7 +19,8 @@ class ImageCarousel extends Component {
         <div className="image_carousel_pic_box">
           {
             images.map((image, i) => (
-              <li
+              <Icon
+                type="picture"
                 key={uuid()}
                 className="carousel_dots"
                 onClick={() => {
@@ -51,7 +39,7 @@ class ImageCarousel extends Component {
 
 ImageCarousel.propTypes = {
   images: PropTypes.array,
-  selectedImage: PropTypes.array,
+  selectedImage: PropTypes.object,
   setImage: PropTypes.func,
   setInfoPanel: PropTypes.func,
 };
@@ -59,7 +47,7 @@ ImageCarousel.propTypes = {
 ImageCarousel.defaultProps = {
   minImages: [],
   images: [],
-  selectedImage: [],
+  selectedImage: {},
   setImage: () => {},
   setInfoPanel: () => {},
 };

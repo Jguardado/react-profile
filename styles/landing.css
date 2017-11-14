@@ -1,5 +1,7 @@
 .landing_container {
-
+  height: 100%;
+  width: 100%;
+  min-height: 1000px;
 }
 
 /* Image Carousel */

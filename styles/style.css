@@ -1,3 +1,4 @@
+@import '~antd/dist/antd.css';
 @import "./variables.scss";
 @import "./games.css";
 @import "./blog.css";
@@ -6,8 +7,25 @@
 @import "../node_modules/codemirror/lib/codemirror.css";
 
 .home_container {
-  background-color: $light-grey;
+  background-color: rgba(247, 247, 247, 0.5);
   min-height: 1500px;
+  font-family: AkkuratStd, sans-serif;
+}
+
+.ant-layout-footer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #fff;
+  text-align: center;
+}
+
+.btn {
+  width: 100px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
 }
 
 

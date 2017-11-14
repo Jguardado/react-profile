@@ -1,10 +1,26 @@
 import React, { PropTypes } from 'react';
-import Header from './header.jsx'; // eslint-disable-line
+import { Layout } from 'antd';
+import NavigationComp from './header.jsx'; // eslint-disable-line
+
+const { Header, Content, Sider, Footer } = Layout;
 
 const Home = ({ children }) => (
-  <div className="home_container">
-    <Header />
-    {children}
+  <div>
+    <Layout>
+      <Header />
+      <NavigationComp />
+      <Layout>
+        <Content>
+          {children}
+        </Content>
+        <Sider>
+          someshit
+        </Sider>
+      </Layout>
+      <Footer>
+        gonne drop some shit
+      </Footer>
+    </Layout>
   </div>
 );
 

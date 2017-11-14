@@ -1,4 +1,10 @@
 import * as types from '../constants';
+// import { handlefetch } from '../helpers/fetch-helpers';
+import {
+  getBlogSummaries,
+  getBlogImages,
+  getMiniBlogImages,
+} from '../selectors/blog-selector';
 
 export const setSelectedBlog = blogIndex => ({
   type: types.SET_SELECTED_BLOG_INDEX,
@@ -30,23 +36,24 @@ const receivedBlogMiniImages = minImages => ({
   payload: minImages,
 });
 
-// TODO: separate this fetch protocal to a helper function.
-export const fetchBlogEntries = dispatch => window.fetch('/blogs')
-  .then(res => res.json())
-  .then(res => dispatch(receivedBlogEntries(res.blogs)))
-  .catch(err => console.log('there was an error fetching blogs: ', err));
 
-export const fetchBlogSummaries = dispatch => window.fetch('/blog-summaries')
-  .then(res => res.json())
-  .then(res => dispatch(receivedBlogSummaries(res.summaries)))
-  .catch(err => console.log('there was an error fetching summaries: ', err));
-
-export const fetchBlogImages = dispatch => window.fetch('/blog-images')
-  .then(res => res.json())
-  .then(res => dispatch(receivedBlogImages(res.blogImages)))
-  .catch(err => console.log('there was an error fetching blog Images: ', err));
-
-export const fetchMiniBlogImages = dispatch => window.fetch('/blog-mini-images')
-  .then(res => res.json())
-  .then(res => dispatch(receivedBlogMiniImages(res.blogMiniImages)))
-  .catch(err => console.log('there was an error fetching blog Images: ', err));
+export const fetchBlogEntries = (dispatch) => {
+  window.fetch('/blogs')
+    .then(res => res.json())
+    .then((res) => {
+      dispatch(receivedBlogEntries(res.blogs));
+      return res;
+    })
+    .then((res) => {
+      dispatch(receivedBlogSummaries(getBlogSummaries(res.blogs)));
+      return res;
+    })
+    .then((res) => {
+      dispatch(receivedBlogImages(getBlogImages(res.blogs)));
+      return res;
+    })
+    .then((res) => {
+      dispatch(receivedBlogMiniImages(getMiniBlogImages(res.blogs)));
+    })
+    .catch(err => console.log('there was an error fetching blogs: ', err));
+};
