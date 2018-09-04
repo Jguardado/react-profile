@@ -25,8 +25,6 @@ class Landing extends Component {
       setInfoPanel,
       minImages,
     } = this.props;
-    // console.log('what is images: ', images);
-    // console.log('what is selectedImage: ', selectedImage);
     return (
       <div className="landing_container">
         <ImageCarousel

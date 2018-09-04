@@ -16,7 +16,7 @@ const Blog = ({
   blogEntries,
   blogEntryImages,
   selectedBlogIndex,
-  modalActive,
+  isModalActive,
   blogSummaries,
   selectBlog,
   activateModal,
@@ -26,13 +26,13 @@ const Blog = ({
   <div className="blog_container">
     <BlogInfoSection info={blogInfoSection} />
     {
-      modalActive ?
-        <BlogFullView
-          blogEntries={blogEntries}
-          image={blogEntryImages[selectedBlogIndex]}
-          selectedBlogIndex={selectedBlogIndex}
-          activateModal={activateModal}
-        /> : null
+      isModalActive && <BlogFullView
+        blogEntries={blogEntries}
+        image={blogEntryImages[selectedBlogIndex]}
+        selectedBlogIndex={selectedBlogIndex}
+        activateModal={activateModal}
+        isModalActive={isModalActive}
+      />
     }
     {
       blogEntries.map((entry, i) => (
@@ -82,14 +82,14 @@ BlogInfoSection.defaultProps = {
   info: '',
 };
 
-const mapState = state => ({
-  blogEntries: state.blogReducer.blogEntries,
-  blogEntryImages: state.blogReducer.blogImages,
-  minBlogEntryImages: state.blogReducer.minBlogEntryImages,
-  selectedBlogIndex: state.blogReducer.selectedBlogIndex,
-  modalActive: state.blogReducer.modalActive,
-  blogSummaries: state.blogReducer.blogSummaries,
-  blogInfoSection: state.blogReducer.blogInfoSection,
+const mapState = ({blogReducer, ui}) => ({
+  blogEntries: blogReducer.blogEntries,
+  blogEntryImages: blogReducer.blogImages,
+  minBlogEntryImages: blogReducer.minBlogEntryImages,
+  selectedBlogIndex: blogReducer.selectedBlogIndex,
+  blogSummaries: blogReducer.blogSummaries,
+  blogInfoSection: blogReducer.blogInfoSection,
+  isModalActive: ui.modalActive
 });
 
 const mapDispatch = dispatch => ({

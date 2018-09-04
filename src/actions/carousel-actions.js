@@ -10,7 +10,7 @@ export const receivedCarouselImages = images => ({
   payload: images,
 });
 
-export const fetchCarouselImages = dispatch => window.fetch('/images')
+export const fetchCarouselImages = dispatch => window.fetch('/api/images')
   .then(res => res.json())
   .then(res => dispatch(receivedCarouselImages(res.images)))
   .catch(err => console.log('there was an error fetching Carousel images: ', err));

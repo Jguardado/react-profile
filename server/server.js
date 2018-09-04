@@ -14,21 +14,21 @@ app.use(express.static('assets'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 // Server routes...
-app.get('/hello', (req, res) => res.send({ hi: 'there' }));
+app.get('/api/hello', (req, res) => res.send({ hi: 'there' }));
 
 /* ============== BLOG =============================== */
-app.get('/blogs', blogHandlers.blogEntries);
-app.get('/blogs:id', blogHandlers.blogEntry);
-app.get('/submit-blog', blogHandlers.createBlogEntry);
+app.get('/api/blogs', blogHandlers.blogEntries);
+app.get('/api/blogs:id', blogHandlers.blogEntry);
+app.get('/api/submit-blog', blogHandlers.createBlogEntry);
 
 /* =============== Image Carousel ====================== */
 
-app.get('/images', imageHandlers.images);
-app.get('/sampleCode', sampleCodeHandlers.sampleCode);
+app.get('/api/images', imageHandlers.images);
+app.get('/api/sampleCode', sampleCodeHandlers.sampleCode);
 
 /* ================ Demo Stuff ========================== */
 
-app.post('/rubyDemo', (req, res) => {
+app.post('/api/rubyDemo', (req, res) => {
   console.log('\n\n\n what is req payload: ', Object.keys(req));
   if (res) {
     console.log('\n\n there is a res: ', Object.keys(res));
@@ -50,4 +50,4 @@ if (process.env.NODE_ENV !== 'production') {
   });
 }
 
-app.listen(process.env.PORT || 3050, () => console.log('Listening'));
+app.listen(process.env.PORT || 3000, () => console.log('Listening'));

@@ -1,7 +1,7 @@
 @import '~antd/dist/antd.css';
 @import "./variables.scss";
 @import "./games.css";
-@import "./blog.css";
+@import "../src/components/blog/blog.css";
 @import "./header.css";
 @import "./landing.css";
 @import "../node_modules/codemirror/lib/codemirror.css";
@@ -20,6 +20,11 @@
   padding: 1rem;
   background-color: #fff;
   text-align: center;
+}
+
+.ant-layout-header {
+  padding: 0;
+  height: 47px;
 }
 
 .btn {

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Menu, Icon } from 'antd';
-
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import {
   fetchBlogEntries,
 } from '../actions/blog-actions';
@@ -18,6 +17,9 @@ import {
 import {
   fetchDemoInfo,
 } from '../actions/games-actions';
+
+
+
 
 class NavigationComp extends Component {
   constructor(props) {
@@ -36,6 +38,24 @@ class NavigationComp extends Component {
     fetchDemoCode();
   }
 
+  _renderMenuItem ({key, route, type, handler, label}) {
+    return (
+      <Menu.Item key={key}>
+        <div>
+          <Icon type={type} />
+          <Link
+            onClick={() => {
+              handler();
+            }}
+            to={route}
+            >
+            {label}
+          </Link>
+        </div>
+      </Menu.Item>
+    )
+  }
+
   handleClick(e) {
     this.setState({
       current: e.key,
@@ -52,49 +72,37 @@ class NavigationComp extends Component {
       fetchDemoCode,
     } = this.props;
 
+    const items = [
+      {
+        route: '/photography',
+        key: 'carousel',
+        type: 'compass',
+        handler: fetchCarousel,
+        label: 'Photos'
+      },
+      {
+        route: '/blog',
+        key: 'blog',
+        type: 'coffee',
+        handler: fetchBlogs,
+        label: 'Blog'
+      },
+      {
+        route: '/games',
+        key: 'games',
+        type: 'fork',
+        handler: fetchDemoCode,
+        label: 'Games'
+      }
+    ]
+
     return (
       <Menu
         onClick={this.handleClick}
         selectedKeys={[this.state.current]}
         mode="horizontal"
       >
-        <Menu.Item key="carousel">
-          <div>
-            <Icon type="compass" />
-            <Link
-              onClick={() => {
-                fetchCarousel();
-              }}
-              to="/"
-            >
-                Home
-            </Link>
-          </div>
-        </Menu.Item>
-        <Menu.Item key="blog">
-          <div>
-            <Icon type="coffee" />
-            <Link
-              to="/blog"
-              onClick={() => {
-                fetchBlogs();
-              }}
-            >
-                Blog
-            </Link>
-          </div>
-        </Menu.Item>
-        <Menu.Item key="games">
-          <div>
-            <Icon type="fork" />
-            <Link
-              onClick={() => fetchDemoCode()}
-              to="/games"
-            >
-              Games
-            </Link>
-          </div>
-        </Menu.Item>
+      {items.map(item => this._renderMenuItem(item))}
       </Menu>
     );
   }

@@ -38,7 +38,7 @@ const receivedBlogMiniImages = minImages => ({
 
 
 export const fetchBlogEntries = (dispatch) => {
-  window.fetch('/blogs')
+  window.fetch('/api/blogs')
     .then(res => res.json())
     .then((res) => {
       dispatch(receivedBlogEntries(res.blogs));
