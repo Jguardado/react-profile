@@ -23,7 +23,21 @@ app.get('/api/submit-blog', blogHandlers.createBlogEntry);
 
 /* =============== Image Carousel ====================== */
 
-app.get('/api/images', imageHandlers.images);
+// app.get('/api/images', function(req, res) {
+//   res.send('cool')
+// });
+
+app.get('/api/images', async function (req, res) {
+  let images;
+  try {
+    console.log('trying to hit DB');
+    images = await imageHandlers.images();
+  } catch (err) {
+    res.status(500).json({error: err.toString() })
+  }
+  res.json({ images });
+});
+
 app.get('/api/sampleCode', sampleCodeHandlers.sampleCode);
 
 /* ================ Demo Stuff ========================== */

@@ -4,13 +4,13 @@ const { Image } = require('./db');
 // Image Carousel Handlers
 //* **********************************************************************************
 
-const images = (req, res) => {
+const images = () => {
   Image.findAll({
     where: {
       context: 'carousel',
     },
   }).then((results) => {
-    res.send({ images: results });
+    return { images: results };
   });
   // res.send({ images: imagesFromDB });
 };

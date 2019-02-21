@@ -22,7 +22,7 @@ const blogEntries = (req, res) => {
     },
   }).then((results) => {
     res.send({ blogs: results });
-  });
+  })
 };
 
 const blogEntry = (req, res) => {
