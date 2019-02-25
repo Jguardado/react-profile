@@ -1,0 +1,64 @@
+.landing_container {
+  height: 100%;
+  width: 100%;
+  min-height: 1000px;
+}
+
+/* Image Carousel */
+.image_carousel_pic_box {
+  display: flex;
+  margin-left: 40%;
+}
+
+.carousel_dots {
+  font-size: 45px;
+  color: grey;
+}
+
+.image_carousel_selected_container {
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.image_carousel_selected {
+  display: block;
+  margin: 0 auto;
+}
+
+.image_carousel_image_button {
+  flex: 1;
+  width: 200px;
+  border-radius: 4px;
+  margin-left: 5px;
+  margin-right: 5px;
+  position: relative;
+}
+
+.image_carousel_title {
+  margin-top: 30px;
+  margin-left: 37%;
+  margin-bottom: 40px;
+  font-size: 40px;
+  font-weight: bolder;
+}
+
+.image_carousel_min_pic {
+  position: relative;
+  width: 100%;
+  border-radius: 4px;
+}
+
+/* Info Panel */
+
+.info_panel_container {
+  text-align: center;
+  /*border: 1px solid white;*/
+  font-size: 20px;
+  margin-left: 50px;
+  margin-top: 70px;
+
+  margin-right: 70px;
+  padding-top: 5px;
+  padding-left: 5px;
+  /*background-color: aliceBlue;*/
+}
