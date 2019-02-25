@@ -13,22 +13,56 @@ const app = express();
 app.use(express.static('assets'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+const port = process.env.PORT || 5000;
+
+
 // Server routes...
-app.get('/hello', (req, res) => res.send({ hi: 'there' }));
+app.get('/api/hello', (req, res) => res.send({ hi: 'there' }));
 
 /* ============== BLOG =============================== */
-app.get('/blogs', blogHandlers.blogEntries);
-app.get('/blogs:id', blogHandlers.blogEntry);
-app.get('/submit-blog', blogHandlers.createBlogEntry);
+app.get('/api/blogs', async function (req, res) {
+  let blogs;
+  try {
+    blogs = await blogHandlers.blogEntries();
+  } catch (err) {
+    res.status(500).json({error: err.toString() })
+  }
+  res.json({ blogs })
+})
+app.get('/api/blogs:id', blogHandlers.blogEntry);
+app.get('/api/submit-blog', blogHandlers.createBlogEntry);
 
 /* =============== Image Carousel ====================== */
 
-app.get('/images', imageHandlers.images);
-app.get('/sampleCode', sampleCodeHandlers.sampleCode);
+app.get('/api/images', async function (req, res) {
+  let images;
+  try {
+    images = await imageHandlers.images();
+  } catch (err) {
+    res.status(500).json({error: err.toString() })
+  }
+  res.json({ images });
+});
+
+app.get('/api/sampleCode', async function (req, res) {
+  let sampleCode;
+  try {
+    sampleCode = await sampleCodeHandlers.sampleCode()
+  } catch (err) {
+    res.status(500).json({error: err.toString() })
+  }
+  res.json({ sampleCode });
+});
 
 /* ================ Demo Stuff ========================== */
 
-app.post('/rubyDemo', (req, res) => {
+app.post('/api/rubyDemo', (req, res) => {
   console.log('\n\n\n what is req payload: ', Object.keys(req));
   if (res) {
     console.log('\n\n there is a res: ', Object.keys(res));
@@ -36,18 +70,17 @@ app.post('/rubyDemo', (req, res) => {
   }
 });
 
+/* =============== Statis Images ============================ */
+
+app.use(express.static(path.join(__dirname, 'assets')))
+
+
 /* ====================================================== */
 
-if (process.env.NODE_ENV !== 'production') {
-  const webpackMiddleware = require('webpack-dev-middleware');
-  const webpack = require('webpack');
-  const webpackConfig = require('../webpack.config.js');
-  app.use(webpackMiddleware(webpack(webpackConfig)));
-} else {
-  app.use(express.static('dist'));
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist/index.html'));
-  });
-}
+app.use(express.static(path.join(__dirname, 'public', 'index.html')));
 
-app.listen(process.env.PORT || 3050, () => console.log('Listening'));
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.listen(port, () => console.log('Listening on port : ', port));

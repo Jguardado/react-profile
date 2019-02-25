@@ -7,6 +7,11 @@ const ui = (state = {}, action) => {
         ...state,
         edit: action.payload,
       };
+    case types.SET_MODAL_ACTIVATION:
+      return {
+        ...state,
+        modalActive: action.payload,
+      };
     default:
       return state;
   }

@@ -1,4 +1,5 @@
 const { Blog } = require('./db');
+const { getImageUrl } = require('./assets/util');
 
 //* **********************************************************************************
 // Blog Handlers
@@ -14,15 +15,18 @@ const createBlogEntry = (req, res) => {
   //   }));
 };
 
-// NOTE: converted this to a single DB call for all blog info
-const blogEntries = (req, res) => {
-  Blog.findAll({
+const blogEntries = async function () {
+  return await Blog.findAll({
     where: {
       context: 'blog',
     },
   }).then((results) => {
-    res.send({ blogs: results });
-  });
+    return results.map((result) => ({
+      ...result.dataValues,
+      image: getImageUrl(result.dataValues.image),
+      miniImage: getImageUrl(result.miniImage)
+    }));
+  }).catch((err) => console.error(err))
 };
 
 const blogEntry = (req, res) => {

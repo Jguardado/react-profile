@@ -1,27 +1,26 @@
 const { Image } = require('./db');
+const { getImageUrl } = require('./assets/util');
 
 //* **********************************************************************************
 // Image Carousel Handlers
 //* **********************************************************************************
 
-const images = (req, res) => {
-  Image.findAll({
+const images = async function () {
+  return await Image.findAll({
     where: {
       context: 'carousel',
     },
   }).then((results) => {
-    res.send({ images: results });
-  });
-  // res.send({ images: imagesFromDB });
+    // TODO: to avoid having to deal with storing buffered images or creating
+    // a separate image server, I am using the localling staored images files and setting
+    // them in the handler
+    return results.map((result) => ({
+      ...result.dataValues,
+      image: getImageUrl(result.dataValues.image),
+      miniImage: getImageUrl(result.miniImage)
+    }));
+  }).catch((err) => console.error(err))
 };
-//
-// const miniImages = (req, res) => {
-//   res.send({ miniImages: minImagesFromDB });
-// };
-//
-// const panels = (req, res) => {
-//   res.send({ panels: panelsFromDB });
-// };
 
 module.exports = {
   images,

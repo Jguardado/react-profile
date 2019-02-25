@@ -11,7 +11,7 @@ class ImageCarousel extends Component {
           className="image_carousel_selected_container"
         >
           <img
-            src={selectedImage.image}
+            src={selectedImage.image || images[0].image}
             alt="Select to one from below"
             className="image_carousel_selected"
           />

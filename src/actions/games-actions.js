@@ -50,7 +50,7 @@ const getNodeCode = (res) => {
 };
 
 export const fetchDemoInfo = (dispatch) => {
-  window.fetch('/sampleCode')
+  window.fetch('/api/sampleCode')
     .then(res => res.json())
     .then((res) => {
       dispatch(receivedSampleCodeInfo(res.sampleCode));

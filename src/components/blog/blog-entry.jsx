@@ -15,7 +15,7 @@ const BlogEntry = ({
       activateModal(true);
     }}
   >
-    <img className="blog_entry_image"src={`http://localhost:3050${minImage}`} alt="thumbnail didnt load" />
+    <img className="blog_entry_image"src={minImage} alt="thumbnail didnt load" />
     <BlogSummary summaryIndex={index} summaries={summaries} />
   </div>
 );

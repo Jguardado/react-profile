@@ -1,35 +1,44 @@
 import React, { PropTypes } from 'react';
 import { Layout } from 'antd';
+import Spinner from "../spinner";
 import NavigationComp from './header.jsx'; // eslint-disable-line
+import RouteWithSubRoutes from '../RouteWithSubRoutes.jsx';
 
 const { Header, Content, Sider, Footer } = Layout;
 
-const Home = ({ children }) => (
-  <div>
-    <Layout>
-      <Header />
-      <NavigationComp />
+const Home = (props) => {
+  // if () {
+  //
+  // }
+
+  return (
+    <div>
       <Layout>
-        <Content>
-          {children}
-        </Content>
-        <Sider>
-          someshit
-        </Sider>
+        <Header>
+          <NavigationComp />
+        </Header>
+        <Layout>
+          <Content>
+            {props.routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
+          </Content>
+          <Sider>
+            someshit
+          </Sider>
+        </Layout>
+        <Footer>
+          gonne drop some shit
+        </Footer>
       </Layout>
-      <Footer>
-        gonne drop some shit
-      </Footer>
-    </Layout>
-  </div>
-);
+    </div>
+  );
+}
 
-Home.propTypes = {
-  children: PropTypes.element,
-};
+// Home.propTypes = {
+//   children: PropTypes.element,
+// };
 
-Home.defaultProps = {
-  children: {},
-};
+// Home.defaultProps = {
+//   children: {},
+// };
 
 export default Home;

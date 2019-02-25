@@ -10,7 +10,7 @@ export const receivedPanelInfo = panels => ({
   payload: panels,
 });
 
-export const fetchPanelInfo = dispatch => window.fetch('/panels')
+export const fetchPanelInfo = dispatch => window.fetch('/api/panels')
   .then(res => res.json())
   .then(res => dispatch(receivedPanelInfo(res.panels)))
   .catch(err => console.log('there was an error fetching Panels: ', err));

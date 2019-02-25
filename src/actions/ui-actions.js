@@ -16,7 +16,7 @@ const setEditedContent = (text, context) => ({
 
 // NOTE: POST request is not going through
 const postInputToServer = (dispatch, input, context) => {
-  window.fetch(`/${context.path}`, {
+  window.fetch(`/api/${context.path}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

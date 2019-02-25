@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import InfoPanel from './info-panel.jsx';
 import ImageCarousel from './image-carousel.jsx';
+import Spinner from "../../spinner";
 
 import { changeImage, fetchCarouselImages } from '../../actions/carousel-actions';
 import { changeInfoPanelIndex, fetchPanelInfo } from '../../actions/info-panel-actions';
@@ -13,10 +14,14 @@ class Landing extends Component {
     const { fetchCarousel, setImage } = this.props;
     fetchCarousel();
     // fetchPanels();s
-    setImage('/san-fran.jpeg'); // BAD!!! just tryint to get around async call
   }
 
   render() {
+    console.log('this.props', this.props);
+    if (this.props.images.length < 1) {
+      return <Spinner />
+    }
+
     const {
       images,
       setImage,
@@ -25,8 +30,6 @@ class Landing extends Component {
       setInfoPanel,
       minImages,
     } = this.props;
-    // console.log('what is images: ', images);
-    // console.log('what is selectedImage: ', selectedImage);
     return (
       <div className="landing_container">
         <ImageCarousel
