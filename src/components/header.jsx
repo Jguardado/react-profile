@@ -34,8 +34,8 @@ class NavigationComp extends Component {
   componentDidMount() {
     const { fetchBlogs, fetchCarousel, fetchDemoCode } = this.props;
     fetchCarousel();
-    fetchBlogs();
-    fetchDemoCode();
+    // fetchBlogs();
+    // fetchDemoCode();
   }
 
   _renderMenuItem ({key, route, type, handler, label}) {

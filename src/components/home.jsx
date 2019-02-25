@@ -7,10 +7,9 @@ import RouteWithSubRoutes from '../RouteWithSubRoutes.jsx';
 const { Header, Content, Sider, Footer } = Layout;
 
 const Home = (props) => {
-  console.log('this.props', props);
-  if (props) {
-    return <Spinner />
-  }
+  // if () {
+  //
+  // }
 
   return (
     <div>

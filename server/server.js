@@ -13,6 +13,15 @@ const app = express();
 app.use(express.static('assets'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+const port = process.env.PORT || 5000;
+
+
 // Server routes...
 app.get('/api/hello', (req, res) => res.send({ hi: 'there' }));
 
@@ -23,14 +32,9 @@ app.get('/api/submit-blog', blogHandlers.createBlogEntry);
 
 /* =============== Image Carousel ====================== */
 
-// app.get('/api/images', function(req, res) {
-//   res.send('cool')
-// });
-
 app.get('/api/images', async function (req, res) {
   let images;
   try {
-    console.log('trying to hit DB');
     images = await imageHandlers.images();
   } catch (err) {
     res.status(500).json({error: err.toString() })
@@ -38,7 +42,15 @@ app.get('/api/images', async function (req, res) {
   res.json({ images });
 });
 
-app.get('/api/sampleCode', sampleCodeHandlers.sampleCode);
+app.get('/api/sampleCode', async function (req, res) {
+  let sampleCode;
+  try {
+    sampleCode = await sampleCodeHandlers.sampleCode()
+  } catch (err) {
+    res.status(500).json({error: err.toString() })
+  }
+  res.json({ sampleCode });
+});
 
 /* ================ Demo Stuff ========================== */
 
@@ -50,18 +62,17 @@ app.post('/api/rubyDemo', (req, res) => {
   }
 });
 
+/* =============== Statis Images ============================ */
+
+app.use(express.static(path.join(__dirname, 'assets')))
+
+
 /* ====================================================== */
 
-if (process.env.NODE_ENV !== 'production') {
-  const webpackMiddleware = require('webpack-dev-middleware');
-  const webpack = require('webpack');
-  const webpackConfig = require('../webpack.config.js');
-  app.use(webpackMiddleware(webpack(webpackConfig)));
-} else {
-  app.use(express.static('dist'));
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist/index.html'));
-  });
-}
+app.use(express.static(path.join(__dirname, 'public', 'index.html')));
 
-app.listen(process.env.PORT || 3000, () => console.log('Listening'));
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.listen(port, () => console.log('Listening on port : ', port));

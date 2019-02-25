@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize');
+var fs = require('fs');
 
-const sequelize = new Sequelize('react_profile', 'root', null, {
+const sequelize = new Sequelize('react_profile', 'root', 'password', {
   host: 'localhost',
   dialect: 'mysql',
-
   pool: {
     max: 5,
     min: 0,

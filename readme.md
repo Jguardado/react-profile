@@ -1,19 +1,13 @@
 To start:
 
-**TODO: Improve this set up**
+We have both a client and a server that connects to a mysql server.
 
-We'll want to make sure we have a clean bundle so run:
+To start I recommend starting you mysql server and initializing a database called `react_profile`
 
-`npn run clean`
+From there you'll want uncomment the code on lines 83 thru 85 in the `server/db.js` file. This will populate the db when started.
 
-The server and the webpack bundle are current handled in different processes so you need to start both
+Since we have both a client and a server we will want to start them separately. I have incorporated the permission for cross-origin on the server so you should not experience any trouble with your browsers CORS protocol.
 
-`npm run serve` and `npm run api`
+next run:
 
-The api requires connection to mysql, if that is not already started on you system you'll need to:
-
-`brew services start mysql`
-
- else
-
- `mysql.server start`
+`npm run start` and `npm run server` is two separate terminals

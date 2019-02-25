@@ -1,4 +1,5 @@
 import * as types from '../constants';
+import axios from 'axios';
 
 export const changeImage = image => ({
   type: types.CHANGE_CAROUSEL_IMAGE,
@@ -10,7 +11,6 @@ export const receivedCarouselImages = images => ({
   payload: images,
 });
 
-export const fetchCarouselImages = dispatch => window.fetch('/api/images')
-  .then(res => res.json())
-  .then(res => dispatch(receivedCarouselImages(res.images)))
-  .catch(err => console.log('there was an error fetching Carousel images: ', err));
+export const fetchCarouselImages = dispatch => axios.get('http://localhost:5000/api/images')
+  .then(res => dispatch(receivedCarouselImages(res.data.images)))
+  .catch(err => console.error('there was an error fetching Carousel images: ', err));
