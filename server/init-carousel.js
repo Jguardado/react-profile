@@ -8,7 +8,7 @@ Image.sync({ force: true })
     context: 'carousel',
     entryNum: 1,
     infoPanel: 'This is SF I fucks with it, but not since the hipsters come through',
-    image: 'SF_PIC',
+    image: '/san-fran.jpg',
     miniImage: '/san-fran-sm.jpg',
   }))
 
@@ -17,7 +17,7 @@ Image.sync({ force: true })
     context: 'carousel',
     entryNum: 2,
     infoPanel: 'This is LA, reminds me of the barrio',
-    image: 'LA_PIC',
+    image: '/la-street.jpg',
     miniImage: '/la-street-sm.jpg',
   }));
 
@@ -26,7 +26,7 @@ Image.sync({ force: true })
     context: 'carousel',
     entryNum: 3,
     infoPanel: 'This is just a railroad track, dope pic',
-    image: 'RAILROAD_PIC',
+    image: '/railroad.jpg',
     miniImage: '/railroad-sm.jpg',
   }));
 
@@ -35,6 +35,6 @@ Image.sync({ force: true })
     context: 'carousel',
     entryNum: 4,
     infoPanel: 'I dont know where this is, but I like it',
-    image: 'SOMEWHERE_PIC',
+    image: '/somewhere.jpg',
     miniImage: '/somewhere-sm.jpg',
   }));

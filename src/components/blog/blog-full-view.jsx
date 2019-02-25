@@ -37,19 +37,19 @@ class BlogFullView extends Component {
       activateModal,
       isModalActive
     } = this.props;
-    console.log('Are we rendering? ');
+
     return (
       <Modal
         isOpen={isModalActive}
         onAfterOpen={this.afterOpenModal}
         onRequestClose={this.closeModal}
-        style={'blog_modal'}
         contentLabel="Example Modal"
         >
         <div className="blog_full-view">
+          <h2 ref={subtitle => this.subtitle = subtitle}>{blogEntries[selectedBlogIndex].title}</h2>
           <img
             className="blog_full_view_image"
-            src={`http://localhost:3050${image}`}
+            src={image}
             alt="full view pic didnt load"
             />
           <div className="blog_full_view_text_content">

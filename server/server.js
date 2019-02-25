@@ -26,7 +26,15 @@ const port = process.env.PORT || 5000;
 app.get('/api/hello', (req, res) => res.send({ hi: 'there' }));
 
 /* ============== BLOG =============================== */
-app.get('/api/blogs', blogHandlers.blogEntries);
+app.get('/api/blogs', async function (req, res) {
+  let blogs;
+  try {
+    blogs = await blogHandlers.blogEntries();
+  } catch (err) {
+    res.status(500).json({error: err.toString() })
+  }
+  res.json({ blogs })
+})
 app.get('/api/blogs:id', blogHandlers.blogEntry);
 app.get('/api/submit-blog', blogHandlers.createBlogEntry);
 

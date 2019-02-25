@@ -1,5 +1,5 @@
 import Landing from './components/landing/landing.jsx';
-import Blog from './components/blog/blog.jsx';
+import Blog from './components/blog';
 import Games from './components/games/games.jsx';
 import Home from './components/home.jsx';
 

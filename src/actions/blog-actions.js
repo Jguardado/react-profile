@@ -1,4 +1,5 @@
 import * as types from '../constants';
+import axios from 'axios';
 // import { handlefetch } from '../helpers/fetch-helpers';
 import {
   getBlogSummaries,
@@ -38,22 +39,22 @@ const receivedBlogMiniImages = minImages => ({
 
 
 export const fetchBlogEntries = (dispatch) => {
-  window.fetch('/api/blogs')
-    .then(res => res.json())
+  // TODO: I'll need to configure this to a base route once I plan to go to prod
+  axios.get('http://localhost:5000/api/blogs')
     .then((res) => {
-      dispatch(receivedBlogEntries(res.blogs));
+      dispatch(receivedBlogEntries(res.data.blogs));
       return res;
     })
     .then((res) => {
-      dispatch(receivedBlogSummaries(getBlogSummaries(res.blogs)));
+      dispatch(receivedBlogSummaries(getBlogSummaries(res.data.blogs)));
       return res;
     })
     .then((res) => {
-      dispatch(receivedBlogImages(getBlogImages(res.blogs)));
+      dispatch(receivedBlogImages(getBlogImages(res.data.blogs)));
       return res;
     })
     .then((res) => {
-      dispatch(receivedBlogMiniImages(getMiniBlogImages(res.blogs)));
+      dispatch(receivedBlogMiniImages(getMiniBlogImages(res.data.blogs)));
     })
     .catch(err => console.log('there was an error fetching blogs: ', err));
 };

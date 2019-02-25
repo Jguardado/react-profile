@@ -1,10 +1,9 @@
-import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
+import React, { PropTypes, Component } from 'react';
 import uuid from 'uuid';
+
+import Spinner from "../../spinner";
 import BlogEntry from './blog-entry.jsx';
 import BlogFullView from './blog-full-view.jsx';
-
-import { setSelectedBlog, setModalActivation } from '../../actions/blog-actions';
 
 const BlogInfoSection = ({ info }) => (
   <div className="blog_info_section">
@@ -12,43 +11,62 @@ const BlogInfoSection = ({ info }) => (
   </div>
 );
 
-const Blog = ({
-  blogEntries,
-  blogEntryImages,
-  selectedBlogIndex,
-  isModalActive,
-  blogSummaries,
-  selectBlog,
-  activateModal,
-  minBlogEntryImages,
-  blogInfoSection,
-}) => (
-  <div className="blog_container">
-    <BlogInfoSection info={blogInfoSection} />
-    {
-      isModalActive && <BlogFullView
-        blogEntries={blogEntries}
-        image={blogEntryImages[selectedBlogIndex]}
-        selectedBlogIndex={selectedBlogIndex}
-        activateModal={activateModal}
-        isModalActive={isModalActive}
-      />
+class Blog extends Component {
+  componentDidMount() {
+    const { blogEntries, getBlogs } = this.props;
+    if (!blogEntries.length) {
+      getBlogs()
     }
-    {
-      blogEntries.map((entry, i) => (
-        <BlogEntry
-          key={uuid()}
-          entryIndex={i}
-          summaries={blogSummaries}
-          minImage={minBlogEntryImages[i]}
-          index={i}
-          selectBlog={selectBlog}
-          activateModal={activateModal}
-        />
-      ))
-    }
-  </div>
-);
+  }
+  
+  render () {
+    const {
+      blogEntries,
+      blogEntryImages,
+      selectedBlogIndex,
+      isModalActive,
+      blogSummaries,
+      selectBlog,
+      activateModal,
+      minBlogEntryImages,
+      blogInfoSection,
+    } = this.props;
+
+    if (!blogEntries.length) {
+      console.log("whats the deal");
+      return <Spinner />
+    };
+
+    return (
+      <div className="blog_container">
+        <BlogInfoSection info={blogInfoSection} />
+        {
+          isModalActive && <BlogFullView
+            blogEntries={blogEntries}
+            image={blogEntryImages[selectedBlogIndex]}
+            selectedBlogIndex={selectedBlogIndex}
+            activateModal={activateModal}
+            isModalActive={isModalActive}
+          />
+        }
+        {
+          blogEntries.map((entry, i) => (
+            <BlogEntry
+              key={uuid()}
+              entryIndex={i}
+              summaries={blogSummaries}
+              minImage={minBlogEntryImages[i]}
+              index={i}
+              selectBlog={selectBlog}
+              activateModal={activateModal}
+            />
+          ))
+        }
+      </div>
+    );
+  }
+
+}
 
 Blog.propTypes = {
   blogEntries: PropTypes.array,
@@ -82,19 +100,4 @@ BlogInfoSection.defaultProps = {
   info: '',
 };
 
-const mapState = ({blogReducer, ui}) => ({
-  blogEntries: blogReducer.blogEntries,
-  blogEntryImages: blogReducer.blogImages,
-  minBlogEntryImages: blogReducer.minBlogEntryImages,
-  selectedBlogIndex: blogReducer.selectedBlogIndex,
-  blogSummaries: blogReducer.blogSummaries,
-  blogInfoSection: blogReducer.blogInfoSection,
-  isModalActive: ui.modalActive
-});
-
-const mapDispatch = dispatch => ({
-  selectBlog: index => dispatch(setSelectedBlog(index)),
-  activateModal: bool => dispatch(setModalActivation(bool)),
-});
-
-export default connect(mapState, mapDispatch)(Blog);
+export default Blog;

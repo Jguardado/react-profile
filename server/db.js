@@ -27,6 +27,9 @@ const Blog = sequelize.define('blog', {
   entryNum: {
     type: Sequelize.INTEGER,
   },
+  title: {
+    type: Sequelize.STRING,
+  },
   blogEntry: {
     type: Sequelize.STRING,
   },

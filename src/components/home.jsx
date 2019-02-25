@@ -14,9 +14,10 @@ const Home = (props) => {
   return (
     <div>
       <Layout>
-        <Header />
-        <Layout>
+        <Header>
           <NavigationComp />
+        </Header>
+        <Layout>
           <Content>
             {props.routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
           </Content>
