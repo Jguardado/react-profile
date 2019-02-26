@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 
 const InfoPanel = ({ images, currentInfoPanel }) => {
@@ -14,12 +15,12 @@ const InfoPanel = ({ images, currentInfoPanel }) => {
 
 InfoPanel.propTypes = {
   images: PropTypes.array,
-  currentInfoPanel: PropTypes.string,
+  currentInfoPanel: PropTypes.number,
 };
 
 InfoPanel.defaultProps = {
   images: [],
-  currentInfoPanel: '',
+  currentInfoPanel: 0,
 };
 
 export default InfoPanel;

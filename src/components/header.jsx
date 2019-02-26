@@ -31,12 +31,12 @@ class NavigationComp extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  componentDidMount() {
-    const { fetchBlogs, fetchCarousel, fetchDemoCode } = this.props;
-    fetchCarousel();
-    // fetchBlogs();
-    // fetchDemoCode();
-  }
+  // componentDidMount() {
+  //   const { fetchBlogs, fetchCarousel, fetchDemoCode } = this.props;
+  //   fetchCarousel();
+  //   fetchBlogs();
+  //   fetchDemoCode();
+  // }
 
   _renderMenuItem ({key, route, type, handler, label}) {
     return (
@@ -87,13 +87,15 @@ class NavigationComp extends Component {
         handler: fetchBlogs,
         label: 'Blog'
       },
-      {
-        route: '/games',
-        key: 'games',
-        type: 'fork',
-        handler: fetchDemoCode,
-        label: 'Games'
-      }
+      // TODO: rethinking this rout in general. Its kinda dumb, everything works
+      // (which is good) but its rather useless.
+      // {
+      //   route: '/games',
+      //   key: 'games',
+      //   type: 'fork',
+      //   handler: fetchDemoCode,
+      //   label: 'Games'
+      // }
     ]
 
     return (

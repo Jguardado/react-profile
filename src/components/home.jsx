@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Layout } from 'antd';
 import Spinner from "../spinner";
 import NavigationComp from './header.jsx'; // eslint-disable-line

@@ -1,6 +1,6 @@
 import * as types from '../constants';
 
-const gamesReducer = (state = {}, action) => {
+const gamesReducer = (state = { code: []}, action) => {
   switch (action.type) {
     case types.UPDATE_CODEMIRROR_CONTENT:
       return {
