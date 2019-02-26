@@ -7,7 +7,7 @@ import RouteWithSubRoutes from '../RouteWithSubRoutes.jsx';
 
 const { Header, Content, Sider, Footer } = Layout;
 
-const Home = (props) => {
+const App = (props) => {
   // if () {
   //
   // }
@@ -42,4 +42,4 @@ const Home = (props) => {
 //   children: {},
 // };
 
-export default Home;
+export default App;

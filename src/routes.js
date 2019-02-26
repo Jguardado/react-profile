@@ -1,12 +1,12 @@
 import Photos from './components/photos';
 import Blog from './components/blog';
 import Games from './components/games';
-import Home from './components/home.jsx';
+import App from './components/app';
 
 export default [
   {
     path: '/',
-    component: Home,
+    component: App,
     routes:[
       {
         path: "/blog",
