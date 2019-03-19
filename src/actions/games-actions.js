@@ -1,4 +1,5 @@
 import * as types from '../constants';
+import axios from 'axios';
 
 export const updateCodemirrorContent = (codeType, input) => ({
   type: types.UPDATE_CODEMIRROR_CONTENT,
@@ -50,25 +51,24 @@ const getNodeCode = (res) => {
 };
 
 export const fetchDemoInfo = (dispatch) => {
-  window.fetch('/api/sampleCode')
-    .then(res => res.json())
+  axios.get('http://localhost:5000/api/sampleCode')
     .then((res) => {
-      dispatch(receivedSampleCodeInfo(res.sampleCode));
+      dispatch(receivedSampleCodeInfo(res.data.sampleCode));
       return res;
     })
     .then((res) => {
-      dispatch(updateCodemirrorContent('ruby', getRubyCode(res.sampleCode)));
+      dispatch(updateCodemirrorContent('ruby', getRubyCode(res.data.sampleCode)));
       return res;
     })
     .then((res) => {
-      dispatch(updateCodemirrorContent('react', getReactCode(res.sampleCode)));
+      dispatch(updateCodemirrorContent('react', getReactCode(res.data.sampleCode)));
       return res;
     })
     .then((res) => {
-      dispatch(updateCodemirrorContent('redux', getReduxCode(res.sampleCode)));
+      dispatch(updateCodemirrorContent('redux', getReduxCode(res.data.sampleCode)));
       return res;
     })
     .then((res) => {
-      dispatch(updateCodemirrorContent('node', getNodeCode(res.sampleCode)));
+      dispatch(updateCodemirrorContent('node', getNodeCode(res.data.sampleCode)));
     });
 };

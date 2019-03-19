@@ -10,8 +10,8 @@ const sampleCode = async function () {
       context: 'code',
     },
   }).then((results) => {
-    res.send({ sampleCode: results });
-  }).catch((err) => next(err))
+    return results;
+  }).catch((err) => console.error(err))
 };
 
 module.exports = {

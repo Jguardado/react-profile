@@ -1,6 +1,6 @@
-import Landing from './components/landing/landing.jsx';
+import Photos from './components/photos';
 import Blog from './components/blog';
-import Games from './components/games/games.jsx';
+import Games from './components/games';
 import Home from './components/home.jsx';
 
 export default [
@@ -18,7 +18,7 @@ export default [
       },
       {
         path: '/photography',
-        component: Landing
+        component: Photos
       }
     ]
   }

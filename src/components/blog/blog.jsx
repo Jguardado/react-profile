@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import uuid from 'uuid';
 
 import Spinner from "../../spinner";
@@ -18,7 +19,7 @@ class Blog extends Component {
       getBlogs()
     }
   }
-  
+
   render () {
     const {
       blogEntries,

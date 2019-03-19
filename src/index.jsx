@@ -7,10 +7,6 @@ import store from './store.jsx';
 
 import './styles/style.css';
 
-// import reducers from './reducers';
-
-const reducers = () => {};
-
 const App = () => (
   <Provider store={store}>
     <Routes />

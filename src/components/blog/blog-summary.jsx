@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const BlogSummary = ({ summaries, summaryIndex }) => (
   <div className="blog_entry_summary">
